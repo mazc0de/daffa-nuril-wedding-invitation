@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 type TypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'caption'
-type FontFamily = 'brigesta'
+type FontFamily = 'brigesta' | 'workSans' | 'english111viva'
 type FontWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
 type ThemeColor = 'primary' | 'secondary' | 'muted' | 'accent'
 type FontColor = ThemeColor | (string & {})
@@ -51,7 +51,9 @@ const Typography = <T extends ElementType = 'p'>({
   }
 
   const fontStyles = {
-    brigesta: 'font-brigesta'
+    brigesta: 'font-brigesta',
+    workSans: 'font-work-sans',
+    english111viva: 'font-english111viva'
   }
 
   const weightStyles = {

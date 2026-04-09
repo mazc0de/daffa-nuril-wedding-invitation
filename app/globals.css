@@ -9,6 +9,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-brigesta: var(--font-local-brigesta);
+  --font-work-sans: var(--font-work-sans);
+  --font-english111viva: var(--font-local-english111viva);
 }
 
 @theme {

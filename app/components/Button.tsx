@@ -28,7 +28,8 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   const variantClasses: Record<string, string> = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
+    primary:
+      'bg-[#96483e] text-white hover:bg-[#783a34] active:bg-[#612e2a] cursor-pointer',
     secondary: 'bg-slate-600 text-white hover:bg-slate-700',
     danger: 'bg-red-600 text-white hover:bg-red-700',
     outline: 'border-2 border-current bg-transparent', // current mengikuti warna teks
