@@ -24,6 +24,37 @@ const Home = () => {
     }
   })
 
+  const shipJourney: MotionProps = {
+    animate: {
+      x: ['-300px', '500px', '-300px'],
+
+      rotateY: [0, 0, 180, 180],
+
+      y: [0, -12, 0]
+    },
+    transition: {
+      x: {
+        duration: 25,
+        repeat: Infinity,
+        ease: 'linear',
+        times: [0, 0.5, 1]
+      },
+      rotateY: {
+        duration: 25,
+        repeat: Infinity,
+        ease: 'linear',
+
+        times: [0, 0.49, 0.5, 1]
+      },
+      y: {
+        duration: 4,
+        repeat: Infinity,
+        repeatType: 'mirror',
+        ease: 'easeInOut'
+      }
+    }
+  }
+
   return (
     <main className='bg-1 shadow-custom relative min-h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat'>
       <motion.div
@@ -54,7 +85,7 @@ const Home = () => {
 
       <motion.div
         {...smoothWind(10, 5, 4, 0.5)}
-        className='absolute -bottom-6 -left-6 z-20 origin-bottom-left'
+        className='absolute -bottom-6 -left-6 z-30 origin-bottom-left'
       >
         <Image
           src='/images/flower-left.webp'
@@ -66,7 +97,7 @@ const Home = () => {
 
       <motion.div
         {...smoothWind(11, -5, -4, 1.5)}
-        className='absolute -right-6 -bottom-6 z-20 origin-bottom-right'
+        className='absolute -right-6 -bottom-6 z-30 origin-bottom-right'
       >
         <Image
           src='/images/flower-right.webp'
@@ -81,15 +112,19 @@ const Home = () => {
         alt='tl'
         width={120}
         height={500}
-        className='absolute top-48 left-0 z-10 opacity-80'
+        className='absolute top-48 left-0 z-20 opacity-80'
       />
       <Image
         src='/images/tree-right.webp'
         alt='tr'
         width={120}
         height={500}
-        className='absolute top-48 right-0 z-10 opacity-80'
+        className='absolute top-48 right-0 z-20 opacity-80'
       />
+
+      <motion.div {...shipJourney} className='absolute bottom-16 left-0 z-10'>
+        <Image src='/images/ship.webp' alt='ship' width={300} height={300} />
+      </motion.div>
 
       <div className='relative z-30 flex h-screen w-full items-center justify-center'>
         <div className='h-full w-full max-w-md'>
