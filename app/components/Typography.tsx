@@ -10,6 +10,7 @@ type TypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'caption'
 type FontFamily = 'brigesta' | 'workSans' | 'english111viva'
 type FontWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
 type ThemeColor = 'primary' | 'secondary' | 'muted' | 'accent'
+// FontColor bisa menerima ThemeColor ATAU string hex/rgba biasa
 type FontColor = ThemeColor | (string & {})
 
 type TypographyProps<T extends ElementType> = {
@@ -36,6 +37,8 @@ const Typography = <T extends ElementType = 'p'>({
   ...props
 }: TypographyProps<T>) => {
   const Component = as || (variant === 'caption' ? 'span' : variant)
+
+  // Cek apakah prop color adalah salah satu dari ThemeColor
   const isThemeColor = ['primary', 'secondary', 'muted', 'accent'].includes(
     color as string
   )
@@ -64,11 +67,12 @@ const Typography = <T extends ElementType = 'p'>({
     bold: 'font-bold'
   }
 
+  // UPDATE DI SINI: Gunakan class utility bawaan dari @theme Tailwind v4
   const colorStyles: Record<ThemeColor, string> = {
-    primary: 'text-gray-900 dark:text-gray-100',
-    secondary: 'text-gray-700 dark:text-gray-300',
-    muted: 'text-gray-500 dark:text-gray-400',
-    accent: 'text-blue-600 dark:text-blue-400'
+    primary: 'text-primary',
+    secondary: 'text-secondary',
+    muted: 'text-muted',
+    accent: 'text-accent'
   }
 
   return (
@@ -77,10 +81,12 @@ const Typography = <T extends ElementType = 'p'>({
         !size && variantStyles[variant],
         fontStyles[fontFamily],
         weightStyles[weight],
+        // Jika color adalah ThemeColor, masukkan class text-primary dll
         isThemeColor && colorStyles[color as ThemeColor],
         className
       )}
       style={{
+        // Jika color bukan ThemeColor (misal color="#FF0000"), gunakan inline style
         color: !isThemeColor ? color : undefined,
         fontSize: typeof size === 'number' ? `${size}px` : size,
         ...style

@@ -5,7 +5,7 @@ import Button from './Button'
 const SplashScreen = () => {
   return (
     <div className='relative z-10 h-full w-full p-6'>
-      <div className='flex h-full w-full flex-col items-center justify-center gap-5 rounded-full border-2 border-solid border-[#96483e] bg-[rgba(255,241,219,0.69)] p-8 text-center'>
+      <div className='border-primary flex h-full w-full flex-col items-center justify-center gap-5 rounded-full border-2 border-solid bg-[rgba(255,241,219,0.69)] p-8 text-center'>
         <Typography fontFamily='workSans' size={14} color='#212529'>
           The Wedding Of
         </Typography>
@@ -13,7 +13,7 @@ const SplashScreen = () => {
           <Typography
             fontFamily='brigesta'
             size={60}
-            color='#96483e'
+            color='primary'
             className='leading-tight'
           >
             Nuril
@@ -21,7 +21,7 @@ const SplashScreen = () => {
           <Typography
             fontFamily='english111viva'
             size={36}
-            color='#96483e'
+            color='primary'
             className='mb-4 leading-tight'
           >
             &
@@ -29,7 +29,7 @@ const SplashScreen = () => {
           <Typography
             fontFamily='brigesta'
             size={60}
-            color='#96483e'
+            color='primary'
             className='leading-tight'
           >
             Daffa
@@ -47,7 +47,7 @@ const SplashScreen = () => {
         <Typography
           fontFamily='workSans'
           size={16}
-          color='#96483e'
+          color='primary'
           weight='semibold'
         >
           Nama Tamu

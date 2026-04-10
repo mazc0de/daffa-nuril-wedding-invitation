@@ -14,7 +14,11 @@
 }
 
 @theme {
-  --shadow-custom: 0px 2px 8px 0px #894652;
+  --shadow-custom: 0px 2px 8px 0px #96483e;
+
+  --color-primary: #96483e;
+  --color-primary-100: #783a34;
+  --color-primary-200: #612e2a;
 }
 
 @media (prefers-color-scheme: dark) {
