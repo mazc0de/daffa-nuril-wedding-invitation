@@ -1,11 +1,15 @@
-import React from 'react'
 import Typography from './Typography'
 import Button from './Button'
+import Frame from './Frame'
 
-const SplashScreen = () => {
+interface SplashScreenProps {
+  onOpen: () => void
+}
+
+const SplashScreen = ({ onOpen }: SplashScreenProps) => {
   return (
-    <div className='relative z-10 h-full w-full p-6'>
-      <div className='border-primary flex h-full w-full flex-col items-center justify-center gap-5 rounded-full border-2 border-solid bg-[rgba(255,241,219,0.69)] p-8 text-center'>
+    <div className='relative z-10 flex h-full w-full items-center justify-center p-6'>
+      <Frame className='flex h-[90%] w-full flex-col items-center justify-center gap-5 p-8 text-center'>
         <Typography fontFamily='workSans' size={14} color='#212529'>
           The Wedding Of
         </Typography>
@@ -52,17 +56,20 @@ const SplashScreen = () => {
         >
           Nama Tamu
         </Typography>
-        <Button variant='primary' borderRadius='rounded-full'>
-          <Typography
-            fontFamily='workSans'
-            size={14}
-            color='#fff'
-            weight='medium'
-          >
-            Open Invitation
-          </Typography>
-        </Button>
-      </div>
+
+        <div onClick={onOpen} className='mt-4 cursor-pointer'>
+          <Button variant='primary' borderRadius='rounded-full'>
+            <Typography
+              fontFamily='workSans'
+              size={14}
+              color='#fff'
+              weight='medium'
+            >
+              Open Invitation
+            </Typography>
+          </Button>
+        </div>
+      </Frame>
     </div>
   )
 }

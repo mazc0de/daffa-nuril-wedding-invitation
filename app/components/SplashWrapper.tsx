@@ -1,9 +1,11 @@
-import React from 'react'
-import Typography from './Typography'
 import SplashScreen from './SplashScreen'
 
-const SplashWrapper = () => {
-  return <SplashScreen />
+interface SplashWrapperProps {
+  onOpen: () => void
+}
+
+const SplashWrapper = ({ onOpen }: SplashWrapperProps) => {
+  return <SplashScreen onOpen={onOpen} />
 }
 
 export default SplashWrapper
