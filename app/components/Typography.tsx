@@ -1,10 +1,5 @@
 import React, { ElementType } from 'react'
-import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
+import { cn } from '../utils/cn'
 
 type TypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'caption'
 type FontFamily = 'brigesta' | 'workSans' | 'english111viva'
@@ -69,7 +64,7 @@ const Typography = <T extends ElementType = 'p'>({
 
   // UPDATE DI SINI: Gunakan class utility bawaan dari @theme Tailwind v4
   const colorStyles: Record<ThemeColor, string> = {
-    primary: 'text-primary',
+    primary: 'text-primary-800',
     secondary: 'text-secondary',
     muted: 'text-muted',
     accent: 'text-accent'
