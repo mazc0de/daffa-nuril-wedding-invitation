@@ -190,12 +190,12 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Kontainer */}
+          {/* Kontainer Scroll */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className='absolute inset-0 z-40 h-screen w-full overflow-y-auto scroll-smooth'
+            className='absolute inset-0 z-40 h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth'
           >
             {sections.map((section, index) => {
               const SectionContent = section.Component
@@ -206,7 +206,7 @@ const Home = () => {
                   ref={el => {
                     sectionRefs.current[index] = el
                   }}
-                  className='mx-auto flex h-screen w-full max-w-md items-center justify-center p-6'
+                  className='mx-auto flex h-screen w-full max-w-md snap-start items-center justify-center p-6'
                 >
                   <SectionContent />
                 </section>

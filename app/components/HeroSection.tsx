@@ -17,15 +17,15 @@ const HeroSection = () => {
 
   const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.startTime}/${event.endTime}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`
   return (
-    <Frame className='flex h-full flex-col gap-6 p-4'>
+    <Frame className='flex h-[90%] flex-col gap-6 p-4'>
       <Image
-        src='https://dummyimage.com/400x600'
+        src='https://i.pinimg.com/736x/88/14/36/881436bd90ab1109fad3c9437df3721d.jpg'
         alt='hero-image'
         width={400}
         height={600}
         className='border-primary-800 h-105 w-full rounded-t-full border-2 border-solid object-cover'
       />
-      <div className='flex flex-col items-center justify-center gap-4'>
+      <div className='flex flex-col items-center justify-center gap-2'>
         <Typography fontFamily='workSans' size={14} color='#212529'>
           THE WEDDING OF
         </Typography>
