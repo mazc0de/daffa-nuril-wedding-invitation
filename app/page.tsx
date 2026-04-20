@@ -209,7 +209,9 @@ const Home = () => {
                   ref={el => {
                     sectionRefs.current[index] = el
                   }}
-                  className='mx-auto flex h-screen w-full max-w-md items-center justify-center p-6'
+                  className={`mx-auto flex w-full max-w-md items-center justify-center ${
+                    index === 1 ? 'p-0' : 'h-screen p-6'
+                  }`}
                 >
                   <SectionContent />
                 </section>
