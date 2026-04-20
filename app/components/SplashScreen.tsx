@@ -1,6 +1,6 @@
-import Typography from './Typography'
-import Button from './Button'
 import Frame from './Frame'
+import Button from './Button'
+import Typography from './Typography'
 
 interface SplashScreenProps {
   onOpen: () => void

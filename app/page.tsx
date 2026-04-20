@@ -1,17 +1,20 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
+import { useState, useRef, useEffect } from 'react'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
-import SplashWrapper from './components/SplashWrapper'
+
 import HeroSection from './components/HeroSection'
+import SplashWrapper from './components/SplashWrapper'
 import QuotesSection from './components/QuotesSection'
 import ProfileSection from './components/ProfileSection'
+
 const sections = [
   { id: 1, Component: HeroSection },
   { id: 2, Component: QuotesSection },
   { id: 3, Component: ProfileSection }
 ]
+
 const Home = () => {
   const [isOpened, setIsOpened] = useState(false)
 

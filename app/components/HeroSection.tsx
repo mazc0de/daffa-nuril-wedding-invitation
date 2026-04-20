@@ -1,21 +1,13 @@
+import Link from 'next/link'
 import Image from 'next/image'
+
 import Frame from './Frame'
 import Typography from './Typography'
 import Button from './Button'
-import Link from 'next/link'
+
+import { GOOGLE_CALENDAR_URL } from '../constants/app'
 
 const HeroSection = () => {
-  const GOOGLE_MAP_LOCATION =
-    'https://www.google.com/maps/place/Wisma+Taman+Mandiri,+Blk.+C+No.20,+RT.07%2FRW.3,+Klarasan,+Taman,+Kec.+Taman,+Kabupaten+Pemalang,+Jawa+Tengah+52361/@-6.9005078,109.40723,19z/data=!4m6!3m5!1s0x2e6fdb1e9cd7c6b5:0x3269518c14370b6e!8m2!3d-6.9005091!4d109.4078737!16s%2Fg%2F11ssd93hcx?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D'
-  const event = {
-    title: 'The Wedding of Daffa & Nuril',
-    details: 'Kami mengundang Saudara/i untuk merayakan kebahagiaan kami.',
-    location: GOOGLE_MAP_LOCATION,
-    startTime: '20260531T050000Z',
-    endTime: '20260531T090000Z'
-  }
-
-  const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.startTime}/${event.endTime}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`
   return (
     <Frame className='flex h-[90%] flex-col gap-6 p-4'>
       <Image
@@ -48,7 +40,7 @@ const HeroSection = () => {
         </Typography>
       </div>
       <Link
-        href={googleCalendarUrl}
+        href={GOOGLE_CALENDAR_URL}
         target='_blank'
         rel='noopener noreferrer'
         className='self-center'
