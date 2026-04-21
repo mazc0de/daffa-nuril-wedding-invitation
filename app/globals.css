@@ -11,6 +11,7 @@
   --font-brigesta: var(--font-local-brigesta);
   --font-work-sans: var(--font-work-sans);
   --font-english111viva: var(--font-local-english111viva);
+  --font-photograph_signature: var(--font-local-photograph_signature);
 }
 
 @theme {

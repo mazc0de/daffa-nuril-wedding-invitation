@@ -176,14 +176,14 @@ const Home = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1 }}
-            className='absolute top-1/2 right-4 z-50 flex -translate-y-1/2 flex-col items-center'
+            className='absolute top-1/2 right-2 z-50 flex -translate-y-1/2 flex-col items-center'
           >
             <div className='flex flex-col items-center space-y-4'>
               {sections.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => scrollToSection(index)}
-                  className={`h-3 w-3 rounded-full transition-all duration-300 ${
+                  className={`h-2 w-2 rounded-full transition-all duration-300 ${
                     activeSection === index
                       ? 'bg-primary-800 scale-125'
                       : 'bg-primary-800/40 hover:bg-primary-800'
@@ -209,8 +209,12 @@ const Home = () => {
                   ref={el => {
                     sectionRefs.current[index] = el
                   }}
-                  className={`mx-auto flex w-full max-w-md items-center justify-center ${
-                    index === 1 ? 'p-0' : 'h-screen p-6'
+                  className={`mx-auto flex w-full items-center justify-center ${
+                    index === 1
+                      ? 'p-0'
+                      : index === 2
+                        ? 'min-h-screen p-6'
+                        : 'h-screen p-6'
                   }`}
                 >
                   <SectionContent />

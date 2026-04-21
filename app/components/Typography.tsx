@@ -2,7 +2,11 @@ import React, { ElementType } from 'react'
 import { cn } from '../utils/cn'
 
 type TypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'caption'
-type FontFamily = 'brigesta' | 'workSans' | 'english111viva'
+type FontFamily =
+  | 'brigesta'
+  | 'workSans'
+  | 'english111viva'
+  | 'photographSignature'
 type FontWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
 type ThemeColor = 'primary' | 'secondary' | 'muted' | 'accent'
 // FontColor bisa menerima ThemeColor ATAU string hex/rgba biasa
@@ -51,7 +55,8 @@ const Typography = <T extends ElementType = 'p'>({
   const fontStyles = {
     brigesta: 'font-brigesta',
     workSans: 'font-work-sans',
-    english111viva: 'font-english111viva'
+    english111viva: 'font-english111viva',
+    photographSignature: 'font-photograph_signature'
   }
 
   const weightStyles = {
