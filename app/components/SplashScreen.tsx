@@ -9,7 +9,7 @@ interface SplashScreenProps {
 const SplashScreen = ({ onOpen }: SplashScreenProps) => {
   return (
     <div className='relative z-10 flex h-full w-full items-center justify-center p-6'>
-      <Frame className='flex h-[90%] w-full flex-col items-center justify-center gap-5 p-8 text-center'>
+      <Frame className='flex h-full w-full flex-col items-center justify-center gap-5 p-8 text-center'>
         <Typography fontFamily='workSans' size={14} color='#212529'>
           The Wedding Of
         </Typography>

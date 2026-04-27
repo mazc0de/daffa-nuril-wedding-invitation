@@ -9,7 +9,7 @@ import { GOOGLE_CALENDAR_URL } from '../constants/app'
 
 const HeroSection = () => {
   return (
-    <Frame className='flex h-[90%] flex-col gap-6 p-4'>
+    <Frame className='flex h-full flex-col gap-6 p-6'>
       <Image
         src='https://i.pinimg.com/736x/88/14/36/881436bd90ab1109fad3c9437df3721d.jpg'
         alt='hero-image'

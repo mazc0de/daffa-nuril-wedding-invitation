@@ -15,22 +15,20 @@
 }
 
 @theme {
-  --shadow-custom: 0px 2px 8px 0px #96483e;
+  /* Shadow disesuaikan dengan tint dari warna utama agar tetap harmonis */
+  --shadow-custom: 0px 2px 8px 0px rgba(155, 15, 6, 0.25);
 
-  /* --color-primary: #4a4f3b;
-  --color-primary-100: #783a34;
-  --color-primary-200: #612e2a; */
-  --color-primary-50: #f5f6f3;
-  --color-primary-100: #e9ebe4;
-  --color-primary-200: #d1d5ca;
-  --color-primary-300: #b0b7a6;
-  --color-primary-400: #8e977f;
-  --color-primary-500: #70795f;
-  --color-primary-600: #575e48;
-  --color-primary-700: #474d3b;
-  --color-primary-800: #4a4f3b; /* Base Primary Anda */
-  --color-primary-900: #3e4232;
-  --color-primary-950: #202319;
+  --color-primary-50: #fef3f2;
+  --color-primary-100: #fee3e1;
+  --color-primary-200: #fccbcb;
+  --color-primary-300: #f8a6a4;
+  --color-primary-400: #f17370;
+  --color-primary-500: #e34440;
+  --color-primary-600: #cc2a26;
+  --color-primary-700: #ab1f1b;
+  --color-primary-800: #9b0f06; /* Base Primary Anda */
+  --color-primary-900: #751411;
+  --color-primary-950: #410604;
 }
 
 @media (prefers-color-scheme: dark) {

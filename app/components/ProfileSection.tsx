@@ -12,7 +12,7 @@ const ProfileSection = () => {
         alt='the-brides-photo'
         width={800}
         height={1200}
-        className='border-primary-800 h-96 w-full rounded-t-full border-2 border-solid object-cover min-[480px]:h-125 md:h-162.5'
+        className='border-primary-800 h-72 w-full rounded-t-full border-2 border-solid object-cover min-[480px]:h-80 md:h-96'
       />
       <div className='flex flex-col items-center justify-center'>
         <div className='mt-2 flex flex-col items-center gap-3'>
@@ -88,7 +88,7 @@ const ProfileSection = () => {
         alt='the-grooms-photo'
         width={800}
         height={1200}
-        className='border-primary-800 h-96 w-full rounded-b-full border-2 border-solid object-cover min-[480px]:h-125 md:h-162.5'
+        className='border-primary-800 h-72 w-full rounded-b-full border-2 border-solid object-cover min-[480px]:h-80 md:h-96'
       />
     </Frame>
   )

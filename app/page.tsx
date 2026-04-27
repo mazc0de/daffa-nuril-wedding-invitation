@@ -95,7 +95,7 @@ const Home = () => {
         className='absolute -top-8 -left-8 z-10'
       >
         <Image
-          src='/images/black-tree-left.webp'
+          src='/images/tl.webp'
           alt='btl'
           width={300}
           height={300}
@@ -107,7 +107,7 @@ const Home = () => {
         className='absolute -top-8 -right-8 z-10'
       >
         <Image
-          src='/images/black-tree-right.webp'
+          src='/images/tr.webp'
           alt='btr'
           width={300}
           height={300}
@@ -119,7 +119,7 @@ const Home = () => {
         className='absolute -bottom-6 -left-6 z-30 origin-bottom-left'
       >
         <Image
-          src='/images/flower-left.webp'
+          src='/images/bunga-right.webp'
           alt='fl'
           width={250}
           height={250}
@@ -130,25 +130,25 @@ const Home = () => {
         className='absolute -right-6 -bottom-6 z-30 origin-bottom-right'
       >
         <Image
-          src='/images/flower-right.webp'
+          src='/images/bunga-left.webp'
           alt='fr'
           width={250}
           height={250}
         />
       </motion.div>
       <Image
-        src='/images/tree-left.webp'
+        src='/images/tl-2.webp'
         alt='tl'
-        width={120}
-        height={500}
-        className='absolute top-48 left-0 z-20 opacity-80'
+        width={250}
+        height={250}
+        className='absolute top-96 left-0 z-20 opacity-80'
       />
       <Image
-        src='/images/tree-right.webp'
+        src='/images/tr-2.webp'
         alt='tr'
-        width={120}
-        height={500}
-        className='absolute top-48 right-0 z-20 opacity-80'
+        width={250}
+        height={250}
+        className='absolute top-96 right-0 z-20 opacity-80'
       />
       <motion.div {...shipJourney} className='absolute bottom-16 left-0 z-10'>
         <Image src='/images/ship.webp' alt='ship' width={300} height={300} />
@@ -209,12 +209,11 @@ const Home = () => {
                   ref={el => {
                     sectionRefs.current[index] = el
                   }}
-                  className={`mx-auto flex w-full items-center justify-center ${
+                  className={`mx-auto flex items-center justify-center ${
                     index === 1
-                      ? 'p-0'
-                      : index === 2
-                        ? 'min-h-screen p-6'
-                        : 'h-screen p-6'
+                      ? 'w-full p-0'
+                      : 'max-w-md p-6 ' +
+                        (index === 2 ? 'min-h-screen' : 'h-screen')
                   }`}
                 >
                   <SectionContent />
