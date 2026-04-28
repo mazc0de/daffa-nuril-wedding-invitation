@@ -1,3 +1,4 @@
+import { motion, Variants } from 'framer-motion'
 import Image from 'next/image'
 import Frame from './Frame'
 import Button from './Button'
@@ -5,91 +6,178 @@ import Typography from './Typography'
 import { InstagramIcon } from './InstagramIcon'
 
 const ProfileSection = () => {
+  const imageVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.95, y: 30 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: 'easeOut' }
+    }
+  }
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  }
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' }
+    }
+  }
+
+  const ampersandVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
+    }
+  }
+
   return (
-    <Frame className='flex h-fit flex-col gap-2 p-4'>
-      <Image
-        src='https://i.pinimg.com/736x/99/59/bd/9959bda81a2143d6fb026133d6a7f181.jpg'
-        alt='the-brides-photo'
-        width={800}
-        height={1200}
-        className='border-primary-800 h-72 w-full rounded-t-full border-2 border-solid object-cover min-[480px]:h-80 md:h-96'
-      />
+    <Frame className='flex h-fit flex-col gap-2 overflow-hidden p-4'>
+      <motion.div
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.3 }}
+        variants={imageVariants}
+      >
+        <Image
+          src='https://i.pinimg.com/736x/99/59/bd/9959bda81a2143d6fb026133d6a7f181.jpg'
+          alt='the-brides-photo'
+          width={800}
+          height={1200}
+          className='border-primary-800 h-72 w-full rounded-t-full border-2 border-solid object-cover min-[480px]:h-80 md:h-96'
+        />
+      </motion.div>
+
       <div className='flex flex-col items-center justify-center'>
-        <div className='mt-2 flex flex-col items-center gap-3'>
-          <Typography
-            fontFamily='photographSignature'
-            size={60}
-            className='text-center leading-16'
-          >
-            Nuril
-          </Typography>
-          <Typography
-            fontFamily='brigesta'
-            size={30}
-            color='primary'
-            className='text-center leading-tight tracking-wide'
-          >
-            Nuril Syafa Aini S.Sos
-          </Typography>
-          <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50'>
-            <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
-              <InstagramIcon size={18} fill='#fff' />
-            </div>
-            <Typography
-              fontFamily='workSans'
-              color='#1a1a1a'
-              className='text-center font-medium tracking-wide'
-              size={12}
-            >
-              Instagram
-            </Typography>
-          </Button>
-        </div>
-        <Typography
-          fontFamily='english111viva'
-          size={60}
-          className='mb-5 text-center leading-normal'
+        <motion.div
+          className='mt-4 flex flex-col items-center gap-3'
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.5 }}
+          variants={containerVariants}
         >
-          &
-        </Typography>
-        <div className='mb-2 flex flex-col items-center gap-3'>
-          <Typography
-            fontFamily='photographSignature'
-            size={60}
-            className='text-center leading-16'
-          >
-            Daffa
-          </Typography>
-          <Typography
-            fontFamily='brigesta'
-            size={30}
-            color='primary'
-            className='text-center leading-tight tracking-wide'
-          >
-            Daffa Hanifisyafiq S.Kom
-          </Typography>
-          <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50'>
-            <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
-              <InstagramIcon size={18} fill='#fff' />
-            </div>
+          <motion.div variants={itemVariants}>
             <Typography
-              fontFamily='workSans'
-              color='#1a1a1a'
-              className='text-center font-medium tracking-wide'
-              size={12}
+              fontFamily='photographSignature'
+              size={60}
+              className='text-center leading-16'
             >
-              Instagram
+              Nuril
             </Typography>
-          </Button>
-        </div>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Typography
+              fontFamily='brigesta'
+              size={30}
+              color='primary'
+              className='text-center leading-tight tracking-wide'
+            >
+              Nuril Syafa Aini S.Sos
+            </Typography>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50'>
+              <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
+                <InstagramIcon size={18} fill='#fff' />
+              </div>
+              <Typography
+                fontFamily='workSans'
+                color='#1a1a1a'
+                className='text-center font-medium tracking-wide'
+                size={12}
+              >
+                Instagram
+              </Typography>
+            </Button>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.8 }}
+          variants={ampersandVariants}
+        >
+          <Typography
+            fontFamily='english111viva'
+            size={60}
+            className='my-4 text-center leading-normal'
+          >
+            &
+          </Typography>
+        </motion.div>
+
+        <motion.div
+          className='mb-4 flex flex-col items-center gap-3'
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.5 }}
+          variants={containerVariants}
+        >
+          <motion.div variants={itemVariants}>
+            <Typography
+              fontFamily='photographSignature'
+              size={60}
+              className='text-center leading-16'
+            >
+              Daffa
+            </Typography>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Typography
+              fontFamily='brigesta'
+              size={30}
+              color='primary'
+              className='text-center leading-tight tracking-wide'
+            >
+              Daffa Hanifisyafiq S.Kom
+            </Typography>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50'>
+              <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
+                <InstagramIcon size={18} fill='#fff' />
+              </div>
+              <Typography
+                fontFamily='workSans'
+                color='#1a1a1a'
+                className='text-center font-medium tracking-wide'
+                size={12}
+              >
+                Instagram
+              </Typography>
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
-      <Image
-        src='https://i.pinimg.com/1200x/46/b3/ca/46b3caaaccc6bd632f236f59d6483b91.jpg'
-        alt='the-grooms-photo'
-        width={800}
-        height={1200}
-        className='border-primary-800 h-72 w-full rounded-b-full border-2 border-solid object-cover min-[480px]:h-80 md:h-96'
-      />
+
+      <motion.div
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.3 }}
+        variants={imageVariants}
+      >
+        <Image
+          src='https://i.pinimg.com/1200x/46/b3/ca/46b3caaaccc6bd632f236f59d6483b91.jpg'
+          alt='the-grooms-photo'
+          width={800}
+          height={1200}
+          className='border-primary-800 h-72 w-full rounded-b-full border-2 border-solid object-cover min-[480px]:h-80 md:h-96'
+        />
+      </motion.div>
     </Frame>
   )
 }
