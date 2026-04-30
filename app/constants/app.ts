@@ -10,3 +10,6 @@ export const EVENTS = {
 }
 
 export const GOOGLE_CALENDAR_URL = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(EVENTS.title)}&dates=${EVENTS.startTime}/${EVENTS.endTime}&details=${encodeURIComponent(EVENTS.details)}&location=${encodeURIComponent(EVENTS.location)}`
+
+export const GOOGLE_MAP_HOUSE_LOCATION =
+  'https://maps.app.goo.gl/AygUXfPLqeBBnEV18'

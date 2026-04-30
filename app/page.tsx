@@ -8,11 +8,13 @@ import HeroSection from './components/HeroSection'
 import SplashWrapper from './components/SplashWrapper'
 import QuotesSection from './components/QuotesSection'
 import ProfileSection from './components/ProfileSection'
+import EventSection from './components/EventSection'
 
 const sections = [
   { id: 1, Component: HeroSection },
   { id: 2, Component: QuotesSection },
-  { id: 3, Component: ProfileSection }
+  { id: 3, Component: ProfileSection },
+  { id: 4, Component: EventSection }
 ]
 
 const Home = () => {
