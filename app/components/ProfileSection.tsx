@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Frame from './Frame'
 import Button from './Button'
 import Typography from './Typography'
-import { InstagramIcon } from './InstagramIcon'
+import { InstagramIcon } from './Icons/InstagramIcon'
 
 const ProfileSection = () => {
   const imageVariants: Variants = {
@@ -89,7 +89,7 @@ const ProfileSection = () => {
             </Typography>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50'>
+            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50!'>
               <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
                 <InstagramIcon size={18} fill='#fff' />
               </div>
@@ -147,7 +147,7 @@ const ProfileSection = () => {
             </Typography>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50'>
+            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50!'>
               <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
                 <InstagramIcon size={18} fill='#fff' />
               </div>
