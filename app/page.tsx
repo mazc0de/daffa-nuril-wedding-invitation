@@ -5,16 +5,18 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
 import HeroSection from './components/HeroSection'
+import EventSection from './components/EventSection'
 import SplashWrapper from './components/SplashWrapper'
 import QuotesSection from './components/QuotesSection'
 import ProfileSection from './components/ProfileSection'
-import EventSection from './components/EventSection'
+import WeddingGiftSection from './components/WeddingGiftSection'
 
 const sections = [
   { id: 1, Component: HeroSection },
   { id: 2, Component: QuotesSection },
   { id: 3, Component: ProfileSection },
-  { id: 4, Component: EventSection }
+  { id: 4, Component: EventSection },
+  { id: 5, Component: WeddingGiftSection }
 ]
 
 const Home = () => {
@@ -178,7 +180,7 @@ const Home = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1 }}
-            className='absolute top-1/2 right-2 z-50 flex -translate-y-1/2 flex-col items-center'
+            className='absolute top-1/2 right-2 z-51 flex -translate-y-1/2 flex-col items-center'
           >
             <div className='flex flex-col items-center space-y-4'>
               {sections.map((_, index) => (
@@ -214,8 +216,9 @@ const Home = () => {
                   className={`mx-auto flex items-center justify-center ${
                     index === 1
                       ? 'w-full p-0'
-                      : 'max-w-md p-6 ' +
-                        (index === 2 ? 'min-h-screen' : 'h-screen')
+                      : index === 4
+                        ? 'w-full p-6'
+                        : `max-w-md p-6 ${index === 2 ? 'min-h-screen' : 'h-screen'}`
                   }`}
                 >
                   <SectionContent />
