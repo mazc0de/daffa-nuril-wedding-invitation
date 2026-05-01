@@ -1,3 +1,5 @@
+import { useSearchParams } from 'next/navigation'
+
 import Frame from './Frame'
 import Button from './Button'
 import Typography from './Typography'
@@ -7,6 +9,9 @@ interface SplashScreenProps {
 }
 
 const SplashScreen = ({ onOpen }: SplashScreenProps) => {
+  const searchParams = useSearchParams()
+  const guestName = searchParams.get('to') || 'Nama Tamu'
+
   return (
     <div className='relative z-10 flex h-full w-full items-center justify-center p-6'>
       <Frame className='flex h-full w-full flex-col items-center justify-center gap-5 p-8 text-center'>
@@ -53,8 +58,9 @@ const SplashScreen = ({ onOpen }: SplashScreenProps) => {
           size={16}
           color='primary'
           weight='semibold'
+          className='capitalize'
         >
-          Nama Tamu
+          {guestName.replace(/-/g, ' ')}
         </Typography>
 
         <div onClick={onOpen} className='mt-4 cursor-pointer'>
