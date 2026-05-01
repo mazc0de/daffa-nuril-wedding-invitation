@@ -11,6 +11,7 @@ import EventSection from './components/Section/EventSection'
 import WeddingGiftSection from './components/Section/WeddingGiftSection'
 import WishesSection from './components/Section/WishesSection'
 import SplashWrapper from './components/SplashWrapper'
+import GallerySection from './components/Section/GallerySection'
 
 const sections = [
   { id: 1, Component: HeroSection },
@@ -18,7 +19,8 @@ const sections = [
   { id: 3, Component: ProfileSection },
   { id: 4, Component: EventSection },
   { id: 5, Component: WeddingGiftSection },
-  { id: 6, Component: WishesSection }
+  { id: 6, Component: WishesSection },
+  { id: 7, Component: GallerySection }
 ]
 
 const Home = () => {
