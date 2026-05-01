@@ -12,6 +12,7 @@ import WeddingGiftSection from './components/Section/WeddingGiftSection'
 import WishesSection from './components/Section/WishesSection'
 import SplashWrapper from './components/SplashWrapper'
 import GallerySection from './components/Section/GallerySection'
+import RegardsSection from './components/Section/RegardsSection'
 
 const sections = [
   { id: 1, Component: HeroSection },
@@ -20,7 +21,8 @@ const sections = [
   { id: 4, Component: EventSection },
   { id: 5, Component: WeddingGiftSection },
   { id: 6, Component: WishesSection },
-  { id: 7, Component: GallerySection }
+  { id: 7, Component: GallerySection },
+  { id: 8, Component: RegardsSection }
 ]
 
 const Home = () => {
@@ -220,7 +222,7 @@ const Home = () => {
                   className={`mx-auto flex items-center justify-center ${
                     index === 1
                       ? 'w-full p-0'
-                      : index === 4
+                      : index === 4 || index === 7
                         ? 'w-full p-6'
                         : `max-w-md p-6 ${index === 2 ? 'min-h-screen' : 'h-screen'}`
                   }`}
