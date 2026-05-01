@@ -76,7 +76,7 @@ const HeroSection = () => {
             weight='semibold'
             className='tracking-wider'
           >
-            31 Mei 2026
+            Minggu, 31 Mei 2026
           </Typography>
         </motion.div>
 
