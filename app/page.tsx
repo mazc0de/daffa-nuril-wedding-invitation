@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, Suspense } from 'react'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
 import HeroSection from './components/Section/HeroSection'
@@ -174,7 +174,9 @@ const Home = () => {
             className='absolute inset-0 z-50 flex h-screen w-full items-center justify-center backdrop-blur-[2px]'
           >
             <div className='h-full w-full max-w-md'>
-              <SplashWrapper onOpen={() => setIsOpened(true)} />
+              <Suspense fallback={null}>
+                <SplashWrapper onOpen={() => setIsOpened(true)} />
+              </Suspense>
             </div>
           </motion.div>
         )}
