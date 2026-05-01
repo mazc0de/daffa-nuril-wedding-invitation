@@ -46,7 +46,7 @@ const HeroSection = () => {
       >
         <motion.div variants={scaleVariants} className='w-full'>
           <Image
-            src='https://i.pinimg.com/736x/88/14/36/881436bd90ab1109fad3c9437df3721d.jpg'
+            src='https://i.pinimg.com/1200x/41/a4/67/41a467f9dc5e5ddcc8bc91425bb3e184.jpg'
             alt='hero-image'
             width={400}
             height={600}
