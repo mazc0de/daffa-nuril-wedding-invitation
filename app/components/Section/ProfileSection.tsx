@@ -1,9 +1,10 @@
-import { motion, Variants } from 'framer-motion'
 import Image from 'next/image'
-import Frame from './Frame'
-import Button from './Button'
-import Typography from './Typography'
-import { InstagramIcon } from './Icons/InstagramIcon'
+import { motion, Variants } from 'framer-motion'
+
+import Frame from '../Frame'
+import Button from '../Button'
+import Typography from '../Typography'
+import { InstagramIcon } from '../Icons/InstagramIcon'
 
 const ProfileSection = () => {
   const imageVariants: Variants = {

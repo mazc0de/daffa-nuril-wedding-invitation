@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import Frame from './Frame'
-import Button from './Button'
-import Typography from './Typography'
+import Frame from '../Frame'
+import Button from '../Button'
+import Typography from '../Typography'
 
-import { GOOGLE_CALENDAR_URL } from '../constants/app'
+import { GOOGLE_CALENDAR_URL } from '../../constants/app'
 
 const HeroSection = () => {
   return (

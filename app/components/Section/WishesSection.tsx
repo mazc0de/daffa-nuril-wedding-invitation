@@ -9,11 +9,11 @@ import {
 } from 'firebase/firestore'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import Frame from './Frame'
-import Button from './Button'
-import Typography from './Typography'
+import { db } from '@/app/config/firebase'
 
-import { db } from '../config/firebase'
+import Frame from '../Frame'
+import Button from '../Button'
+import Typography from '../Typography'
 
 interface WishData {
   name: string

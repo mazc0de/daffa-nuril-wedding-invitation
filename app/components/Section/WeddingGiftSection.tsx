@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion, Variants } from 'framer-motion'
-import Frame from './Frame'
-import Modal from './Modal'
-import Button from './Button'
-import Typography from './Typography'
-import GiftIcon from './Icons/GiftIcon'
-import ClipboardIcon from './Icons/ClipboardIcon'
-import CreditCardIcon from './Icons/CreditCardIcon'
-import Toast, { ToastType } from './Toast'
+
+import Frame from '../Frame'
+import Modal from '../Modal'
+import Button from '../Button'
+import Typography from '../Typography'
+
+import Toast, { ToastType } from '../Toast'
+
+import GiftIcon from '../Icons/GiftIcon'
+import ClipboardIcon from '../Icons/ClipboardIcon'
+import CreditCardIcon from '../Icons/CreditCardIcon'
+
 import {
   ALAMAT_RUMAH,
   NO_REK_BCA,
   NO_REK_BCA_LABEL,
   NO_REK_MANDIRI,
   NO_REK_MANDIRI_LABEL
-} from '../constants/app'
+} from '@/app/constants/app'
 
 const WeddingGiftSection = () => {
   const [isCashlessModalOpen, setIsCashlessModalOpen] = useState<boolean>(false)

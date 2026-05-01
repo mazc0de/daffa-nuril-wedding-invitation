@@ -1,6 +1,7 @@
-import { motion, Variants } from 'framer-motion'
-import Typography from './Typography'
 import Image from 'next/image'
+import { motion, Variants } from 'framer-motion'
+
+import Typography from '../Typography'
 
 const QuotesSection = () => {
   const imageVariants: Variants = {

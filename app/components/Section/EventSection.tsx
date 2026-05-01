@@ -1,12 +1,13 @@
-import { motion, Variants } from 'framer-motion'
-import Button from './Button'
-import Frame from './Frame'
-import WeddingRingIcon from './Icons/WeddingRingIcon'
-import MapPinIcon from './Icons/MapPinIcon'
-import Typography from './Typography'
-import CheersIcon from './Icons/CheersIcon'
 import Link from 'next/link'
-import { GOOGLE_MAP_HOUSE_LOCATION } from '../constants/app'
+import { motion, Variants } from 'framer-motion'
+
+import Frame from '../Frame'
+import Button from '../Button'
+import Typography from '../Typography'
+import MapPinIcon from '../Icons/MapPinIcon'
+import CheersIcon from '../Icons/CheersIcon'
+import WeddingRingIcon from '../Icons/WeddingRingIcon'
+import { GOOGLE_MAP_HOUSE_LOCATION } from '@/app/constants/app'
 
 const EventSection = () => {
   const containerVariants: Variants = {

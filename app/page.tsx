@@ -4,13 +4,13 @@ import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
-import HeroSection from './components/HeroSection'
-import EventSection from './components/EventSection'
+import HeroSection from './components/Section/HeroSection'
+import QuotesSection from './components/Section/QuotesSection'
+import ProfileSection from './components/Section/ProfileSection'
+import EventSection from './components/Section/EventSection'
+import WeddingGiftSection from './components/Section/WeddingGiftSection'
+import WishesSection from './components/Section/WishesSection'
 import SplashWrapper from './components/SplashWrapper'
-import QuotesSection from './components/QuotesSection'
-import ProfileSection from './components/ProfileSection'
-import WeddingGiftSection from './components/WeddingGiftSection'
-import WishesSection from './components/WishesSection'
 
 const sections = [
   { id: 1, Component: HeroSection },
