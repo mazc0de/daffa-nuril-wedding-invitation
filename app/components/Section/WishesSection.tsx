@@ -122,7 +122,7 @@ const WishesSection = () => {
               weight='normal'
               className='px-8 text-center'
             >
-              Berikan ucapan harapan dan do’a kepada kedua mempelai
+              Berikan ucapan harapan dan do'a kepada kedua mempelai
             </Typography>
           </motion.div>
         </div>

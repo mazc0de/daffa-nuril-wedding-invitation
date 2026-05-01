@@ -3,16 +3,17 @@ import { motion, Variants, AnimatePresence } from 'framer-motion'
 
 import Frame from '../Frame'
 import Typography from '../Typography'
+import Image from 'next/image'
 
-const images: string[] = [
-  'https://picsum.photos/800/500?random=1',
-  'https://picsum.photos/500/800?random=2',
-  'https://picsum.photos/600/600?random=3',
-  'https://picsum.photos/600/1000?random=4',
-  'https://picsum.photos/1000/600?random=5',
-  'https://picsum.photos/600/800?random=6',
-  'https://picsum.photos/800/600?random=7',
-  'https://picsum.photos/500/700?random=8'
+const images = [
+  { src: 'https://picsum.photos/800/500?random=1', width: 800, height: 500 },
+  { src: 'https://picsum.photos/500/800?random=2', width: 500, height: 800 },
+  { src: 'https://picsum.photos/600/600?random=3', width: 600, height: 600 },
+  { src: 'https://picsum.photos/600/1000?random=4', width: 600, height: 1000 },
+  { src: 'https://picsum.photos/1000/600?random=5', width: 1000, height: 600 },
+  { src: 'https://picsum.photos/600/800?random=6', width: 600, height: 800 },
+  { src: 'https://picsum.photos/800/600?random=7', width: 800, height: 600 },
+  { src: 'https://picsum.photos/500/700?random=8', width: 500, height: 700 }
 ]
 
 const GallerySection: React.FC = () => {
@@ -84,19 +85,21 @@ const GallerySection: React.FC = () => {
 
         <motion.div
           variants={itemVariants}
-          className='custom-scrollbar min-h-0 w-full flex-1 columns-2 gap-4 overflow-y-auto px-2 pb-4 md:columns-3 lg:columns-4'
+          className='custom-scrollbar min-h-0 w-full flex-1 columns-2 gap-4 overflow-y-auto px-2 pb-4 md:columns-2 lg:columns-4'
         >
-          {images.map((src, index) => (
+          {images.map((item, index) => (
             <motion.div
               key={index}
               variants={scaleVariants}
               className='mb-4 break-inside-avoid'
             >
-              <img
-                src={src}
+              <Image
+                src={item.src}
                 alt={`Gallery ${index + 1}`}
+                width={item.width}
+                height={item.height}
+                sizes='(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
                 className='h-auto w-full cursor-pointer rounded-xl object-cover shadow-md transition-transform duration-300 hover:scale-105'
-                loading='lazy'
                 onClick={() => setSelectedIndex(index)}
               />
             </motion.div>
@@ -124,19 +127,28 @@ const GallerySection: React.FC = () => {
                 e.stopPropagation()
               }
             >
-              <div className='relative max-h-full max-w-full'>
-                <motion.img
+              <div className='relative max-h-full max-w-full overflow-hidden rounded-lg'>
+                {/* Perbaikan: Menggunakan wrapper motion.div dan Image Next.js */}
+                <motion.div
                   key={selectedIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
-                  src={images[selectedIndex]}
-                  alt={`Preview ${selectedIndex + 1}`}
-                  className='max-h-[85vh] max-w-full rounded-lg object-contain shadow-2xl'
-                />
+                >
+                  <Image
+                    src={images[selectedIndex].src}
+                    alt={`Preview ${selectedIndex + 1}`}
+                    width={images[selectedIndex].width}
+                    height={images[selectedIndex].height}
+                    priority
+                    className='max-h-[80vh] w-auto rounded-lg object-contain shadow-2xl'
+                  />
+                </motion.div>
 
+                {/* Tombol Close */}
                 <button
-                  className='absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-xl font-bold text-white backdrop-blur-md transition-colors hover:bg-black/80 md:top-4 md:right-4 md:h-10 md:w-10 md:text-2xl'
+                  className='absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-xl font-bold text-white backdrop-blur-md transition-colors hover:bg-black/80 md:top-4 md:right-4 md:h-10 md:w-10 md:text-2xl'
                   onClick={e => {
                     e.stopPropagation()
                     setSelectedIndex(null)
@@ -145,15 +157,17 @@ const GallerySection: React.FC = () => {
                   &times;
                 </button>
 
+                {/* Tombol Prev */}
                 <button
-                  className='absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-2xl font-bold text-white backdrop-blur-md transition-colors hover:bg-black/80 md:left-4 md:h-12 md:w-12 md:text-3xl'
+                  className='absolute top-1/2 left-3 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-2xl font-bold text-white backdrop-blur-md transition-colors hover:bg-black/80 md:left-4 md:h-12 md:w-12 md:text-3xl'
                   onClick={handlePrev}
                 >
                   &#8249;
                 </button>
 
+                {/* Tombol Next */}
                 <button
-                  className='absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-2xl font-bold text-white backdrop-blur-md transition-colors hover:bg-black/80 md:right-4 md:h-12 md:w-12 md:text-3xl'
+                  className='absolute top-1/2 right-3 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-2xl font-bold text-white backdrop-blur-md transition-colors hover:bg-black/80 md:right-4 md:h-12 md:w-12 md:text-3xl'
                   onClick={handleNext}
                 >
                   &#8250;
