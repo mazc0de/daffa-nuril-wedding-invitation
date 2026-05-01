@@ -54,9 +54,7 @@ const WeddingGiftSection = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
+      transition: { staggerChildren: 0.15 }
     }
   }
 
@@ -76,7 +74,7 @@ const WeddingGiftSection = () => {
           className='flex w-full flex-col items-center justify-center gap-4'
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={containerVariants}
         >
           <motion.div variants={itemVariants}>

@@ -14,23 +14,21 @@ const EventSection = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.15 }
     }
   }
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' }
+      transition: { duration: 0.6, ease: 'easeOut' }
     }
   }
 
-  const iconVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.5 },
+  const scaleVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
       scale: 1,
@@ -47,7 +45,7 @@ const EventSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={containerVariants}
       >
-        <motion.div variants={iconVariants} className='mb-2'>
+        <motion.div variants={scaleVariants} className='mb-2'>
           <WeddingRingIcon size={48} />
         </motion.div>
 
@@ -128,7 +126,7 @@ const EventSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={containerVariants}
       >
-        <motion.div variants={iconVariants} className='mb-2'>
+        <motion.div variants={scaleVariants} className='mb-2'>
           <CheersIcon size={48} />
         </motion.div>
 

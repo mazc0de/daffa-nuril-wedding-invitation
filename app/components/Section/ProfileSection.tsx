@@ -7,23 +7,11 @@ import Typography from '../Typography'
 import { InstagramIcon } from '../Icons/InstagramIcon'
 
 const ProfileSection = () => {
-  const imageVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.95, y: 30 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' }
-    }
-  }
-
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
+      transition: { staggerChildren: 0.15 }
     }
   }
 
@@ -36,8 +24,8 @@ const ProfileSection = () => {
     }
   }
 
-  const ampersandVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.5 },
+  const scaleVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
       scale: 1,
@@ -51,7 +39,7 @@ const ProfileSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
-        variants={imageVariants}
+        variants={scaleVariants}
       >
         <Image
           src='https://i.pinimg.com/736x/99/59/bd/9959bda81a2143d6fb026133d6a7f181.jpg'
@@ -110,7 +98,7 @@ const ProfileSection = () => {
           initial='hidden'
           whileInView='visible'
           viewport={{ once: true, amount: 0.8 }}
-          variants={ampersandVariants}
+          variants={scaleVariants}
         >
           <Typography
             fontFamily='english111viva'
@@ -169,7 +157,7 @@ const ProfileSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
-        variants={imageVariants}
+        variants={scaleVariants}
       >
         <Image
           src='https://i.pinimg.com/1200x/46/b3/ca/46b3caaaccc6bd632f236f59d6483b91.jpg'

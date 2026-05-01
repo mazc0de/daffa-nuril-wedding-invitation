@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion, Variants } from 'framer-motion'
 
 import Frame from '../Frame'
 import Button from '../Button'
@@ -8,54 +9,101 @@ import Typography from '../Typography'
 import { GOOGLE_CALENDAR_URL } from '../../constants/app'
 
 const HeroSection = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  }
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' }
+    }
+  }
+
+  const scaleVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
+    }
+  }
+
   return (
     <Frame className='flex h-full flex-col gap-6 p-6'>
-      <Image
-        src='https://i.pinimg.com/736x/88/14/36/881436bd90ab1109fad3c9437df3721d.jpg'
-        alt='hero-image'
-        width={400}
-        height={600}
-        className='border-primary-800 h-105 w-full rounded-t-full border-2 border-solid object-cover'
-      />
-      <div className='flex flex-col items-center justify-center gap-2'>
-        <Typography fontFamily='workSans' size={14} color='#212529'>
-          THE WEDDING OF
-        </Typography>
-        <Typography
-          fontFamily='brigesta'
-          size={40}
-          color='primary'
-          className='leading-tight'
-        >
-          Nuril & Daffa
-        </Typography>
-        <Typography
-          fontFamily='brigesta'
-          size={14}
-          color='#212529'
-          weight='semibold'
-          className='tracking-wider'
-        >
-          31 Mei 2026
-        </Typography>
-      </div>
-      <Link
-        href={GOOGLE_CALENDAR_URL}
-        target='_blank'
-        rel='noopener noreferrer'
-        className='self-center'
+      <motion.div
+        className='flex w-full flex-col items-center justify-center gap-6'
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.3 }}
+        variants={containerVariants}
       >
-        <Button variant='primary' borderRadius='rounded-full' className='w-fit'>
-          <Typography
-            fontFamily='workSans'
-            size={14}
-            color='#fff'
-            weight='medium'
-          >
-            Save the Date
+        <motion.div variants={scaleVariants} className='w-full'>
+          <Image
+            src='https://i.pinimg.com/736x/88/14/36/881436bd90ab1109fad3c9437df3721d.jpg'
+            alt='hero-image'
+            width={400}
+            height={600}
+            className='border-primary-800 h-105 w-full rounded-t-full border-2 border-solid object-cover'
+          />
+        </motion.div>
+
+        <motion.div
+          variants={itemVariants}
+          className='flex flex-col items-center justify-center gap-2'
+        >
+          <Typography fontFamily='workSans' size={14} color='#212529'>
+            THE WEDDING OF
           </Typography>
-        </Button>
-      </Link>
+          <Typography
+            fontFamily='brigesta'
+            size={40}
+            color='primary'
+            className='leading-tight'
+          >
+            Nuril & Daffa
+          </Typography>
+          <Typography
+            fontFamily='brigesta'
+            size={14}
+            color='#212529'
+            weight='semibold'
+            className='tracking-wider'
+          >
+            31 Mei 2026
+          </Typography>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <Link
+            href={GOOGLE_CALENDAR_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='self-center'
+          >
+            <Button
+              variant='primary'
+              borderRadius='rounded-full'
+              className='w-fit'
+            >
+              <Typography
+                fontFamily='workSans'
+                size={14}
+                color='#fff'
+                weight='medium'
+              >
+                Save the Date
+              </Typography>
+            </Button>
+          </Link>
+        </motion.div>
+      </motion.div>
     </Frame>
   )
 }
