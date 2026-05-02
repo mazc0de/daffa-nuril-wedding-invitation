@@ -5,15 +5,20 @@ import {
   serverTimestamp,
   query,
   orderBy,
-  onSnapshot
+  onSnapshot,
+  deleteDoc,
+  doc
 } from 'firebase/firestore'
+import { useSearchParams } from 'next/navigation'
 import { motion, Variants, AnimatePresence } from 'framer-motion'
 
 import { db } from '@/app/config/firebase'
 
+import Modal from '../Modal'
 import Frame from '../Frame'
 import Button from '../Button'
 import Typography from '../Typography'
+import TrashIcon from '../Icons/TrashIcon'
 
 interface WishData {
   name: string
@@ -26,29 +31,31 @@ interface FetchedWish extends WishData {
 }
 
 const WishesSection = () => {
+  const searchParams = useSearchParams()
+  const isDeleteActive = searchParams.get('delete') === 'true'
+
   const [name, setName] = useState<string>('')
   const [wishes, setWishes] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [wishList, setWishList] = useState<FetchedWish[]>([])
 
-  useEffect(() => {
-    const q = query(collection(db, 'wishes'), orderBy('createdAt', 'desc'))
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
-    const unsubscribe = onSnapshot(q, querySnapshot => {
-      const wishesArray: FetchedWish[] = []
-      querySnapshot.forEach(doc => {
-        wishesArray.push({
-          id: doc.id,
-          name: doc.data().name,
-          wishes: doc.data().wishes,
-          createdAt: doc.data().createdAt
-        })
-      })
-      setWishList(wishesArray)
-    })
-
-    return () => unsubscribe()
-  }, [])
+  const handleDelete = async () => {
+    if (!selectedId) return
+    setIsLoading(true)
+    try {
+      await deleteDoc(doc(db, 'wishes', selectedId))
+      setIsModalOpen(false)
+      setSelectedId(null)
+    } catch (error) {
+      console.error('Gagal menghapus:', error)
+      alert('Gagal menghapus ucapan.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -93,159 +100,240 @@ const WishesSection = () => {
     }
   }
 
+  useEffect(() => {
+    const q = query(collection(db, 'wishes'), orderBy('createdAt', 'desc'))
+
+    const unsubscribe = onSnapshot(q, querySnapshot => {
+      const wishesArray: FetchedWish[] = []
+      querySnapshot.forEach(doc => {
+        wishesArray.push({
+          id: doc.id,
+          name: doc.data().name,
+          wishes: doc.data().wishes,
+          createdAt: doc.data().createdAt
+        })
+      })
+      setWishList(wishesArray)
+    })
+
+    return () => unsubscribe()
+  }, [])
+
   return (
-    <Frame className='flex h-full w-full flex-col items-center gap-4 overflow-hidden rounded-4xl! p-4'>
-      <motion.div
-        className='flex min-h-0 w-full flex-1 flex-col items-center gap-4'
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true, amount: 0.1 }}
-        variants={containerVariants}
-      >
-        <div className='flex shrink-0 flex-col items-center gap-2'>
-          <motion.div variants={itemVariants}>
-            <Typography
-              fontFamily='english111viva'
-              size={36}
-              color='primary'
-              className='leading-tight'
-            >
-              Wishes
-            </Typography>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Typography
-              fontFamily='workSans'
-              size={14}
-              color='#212529'
-              weight='normal'
-              className='px-8 text-center'
-            >
-              Berikan ucapan harapan dan do'a kepada kedua mempelai
-            </Typography>
-          </motion.div>
-        </div>
-
-        <motion.form
-          variants={itemVariants}
-          onSubmit={handleSubmit}
-          className='flex w-full shrink-0 flex-col gap-4 md:px-6'
-        >
-          <div className='flex flex-col gap-1'>
-            <Typography
-              fontFamily='workSans'
-              size={14}
-              color='#212529'
-              weight='semibold'
-            >
-              Nama
-            </Typography>
-            <input
-              type='text'
-              placeholder='Masukkan nama Anda'
-              value={name}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setName(e.target.value)
-              }
-              className='border-primary-300 text-primary-800 focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border bg-white p-3 text-sm transition-all outline-none focus:ring-1'
-              required
-              disabled={isLoading}
-            />
-          </div>
-
-          <div className='flex flex-col gap-1'>
-            <Typography
-              fontFamily='workSans'
-              size={14}
-              color='#212529'
-              weight='semibold'
-            >
-              Ucapan
-            </Typography>
-            <textarea
-              rows={2}
-              placeholder='Tulis ucapan dan doa...'
-              value={wishes}
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                setWishes(e.target.value)
-              }
-              className='border-primary-300 text-primary-800 focus:border-primary-500 focus:ring-primary-500 w-full resize-none rounded-xl border bg-white p-3 text-sm transition-all outline-none focus:ring-1'
-              required
-              disabled={isLoading}
-            />
-          </div>
-
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Button
-              type='submit'
-              disabled={isLoading}
-              className={`w-full rounded-xl py-3 text-sm font-semibold text-white transition-colors ${
-                isLoading
-                  ? 'cursor-not-allowed bg-gray-400'
-                  : 'bg-gray-800 hover:bg-gray-900'
-              }`}
-            >
-              {isLoading ? 'Mengirim...' : 'Kirim Ucapan'}
-            </Button>
-          </motion.div>
-        </motion.form>
-
+    <>
+      <Frame className='flex h-full w-full flex-col items-center gap-4 overflow-hidden rounded-4xl! p-4'>
         <motion.div
-          variants={itemVariants}
-          className='border-primary-800 flex min-h-0 w-full flex-1 flex-col gap-3 border-t pt-4 md:px-6'
+          className='flex min-h-0 w-full flex-1 flex-col items-center gap-4'
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
         >
-          <div className='custom-scrollbar flex h-full w-full flex-col gap-3 overflow-y-auto pr-1 pb-2'>
-            {wishList.length === 0 ? (
+          <div className='flex shrink-0 flex-col items-center gap-2'>
+            <motion.div variants={itemVariants}>
+              <Typography
+                fontFamily='english111viva'
+                size={36}
+                color='primary'
+                className='leading-tight'
+              >
+                Wishes
+              </Typography>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
               <Typography
                 fontFamily='workSans'
                 size={14}
-                color='#6c757d'
-                className='text-center italic'
+                color='#212529'
+                weight='normal'
+                className='px-8 text-center'
               >
-                Belum ada ucapan. Jadilah yang pertama!
+                Berikan ucapan harapan dan do'a kepada kedua mempelai
               </Typography>
-            ) : (
-              <AnimatePresence mode='popLayout'>
-                {wishList.map(wish => (
-                  <motion.div
-                    layout
-                    key={wish.id}
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 400,
-                      damping: 25
-                    }}
-                    className='border-primary-300 flex flex-col gap-1 rounded-xl border bg-gray-50 p-4 shadow-sm'
-                  >
-                    <Typography
-                      fontFamily='workSans'
-                      size={14}
-                      color='#212529'
-                      weight='bold'
-                      className='capitalize'
-                    >
-                      {wish.name}
-                    </Typography>
-                    <Typography
-                      fontFamily='workSans'
-                      size={14}
-                      color='#495057'
-                      className='leading-relaxed whitespace-pre-wrap first-letter:uppercase'
-                    >
-                      {wish.wishes}
-                    </Typography>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            )}
+            </motion.div>
           </div>
+
+          <motion.form
+            variants={itemVariants}
+            onSubmit={handleSubmit}
+            className='flex w-full shrink-0 flex-col gap-4 md:px-6'
+          >
+            <div className='flex flex-col gap-1'>
+              <Typography
+                fontFamily='workSans'
+                size={14}
+                color='#212529'
+                weight='semibold'
+              >
+                Nama
+              </Typography>
+              <input
+                type='text'
+                placeholder='Masukkan nama Anda'
+                value={name}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setName(e.target.value)
+                }
+                className='border-primary-300 text-primary-800 focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border bg-white p-3 text-sm transition-all outline-none focus:ring-1'
+                required
+                disabled={isLoading}
+              />
+            </div>
+
+            <div className='flex flex-col gap-1'>
+              <Typography
+                fontFamily='workSans'
+                size={14}
+                color='#212529'
+                weight='semibold'
+              >
+                Ucapan
+              </Typography>
+              <textarea
+                rows={2}
+                placeholder='Tulis ucapan dan doa...'
+                value={wishes}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setWishes(e.target.value)
+                }
+                className='border-primary-300 text-primary-800 focus:border-primary-500 focus:ring-primary-500 w-full resize-none rounded-xl border bg-white p-3 text-sm transition-all outline-none focus:ring-1'
+                required
+                disabled={isLoading}
+              />
+            </div>
+
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                type='submit'
+                disabled={isLoading}
+                className={`w-full rounded-xl py-3 text-sm font-semibold text-white transition-colors ${
+                  isLoading
+                    ? 'cursor-not-allowed bg-gray-400'
+                    : 'bg-gray-800 hover:bg-gray-900'
+                }`}
+              >
+                {isLoading ? 'Mengirim...' : 'Kirim Ucapan'}
+              </Button>
+            </motion.div>
+          </motion.form>
+
+          <motion.div
+            variants={itemVariants}
+            className='border-primary-800 flex min-h-0 w-full flex-1 flex-col gap-3 border-t pt-4 md:px-6'
+          >
+            <div className='custom-scrollbar flex h-full w-full flex-col gap-3 overflow-y-auto pr-1 pb-2'>
+              {wishList.length === 0 ? (
+                <Typography
+                  fontFamily='workSans'
+                  size={14}
+                  color='#6c757d'
+                  className='text-center italic'
+                >
+                  Belum ada ucapan.
+                </Typography>
+              ) : (
+                <AnimatePresence mode='popLayout'>
+                  {wishList.map(wish => (
+                    <motion.div
+                      layout
+                      key={wish.id}
+                      className='border-primary-300 flex flex-col gap-1 rounded-xl border bg-gray-50 p-4 shadow-sm'
+                    >
+                      <div className='flex items-center justify-between gap-2'>
+                        <Typography
+                          fontFamily='workSans'
+                          size={14}
+                          color='#212529'
+                          weight='bold'
+                          className='capitalize'
+                        >
+                          {wish.name}
+                        </Typography>
+
+                        {isDeleteActive && (
+                          <Button
+                            onClick={() => {
+                              setSelectedId(wish.id)
+                              setIsModalOpen(true)
+                            }}
+                            className='flex cursor-pointer items-center justify-center rounded-full bg-red-50 p-2 text-red-600 transition-colors hover:bg-red-100'
+                          >
+                            <TrashIcon size={16} color='#9b0f06' />
+                          </Button>
+                        )}
+                      </div>
+                      <Typography
+                        fontFamily='workSans'
+                        size={14}
+                        color='#495057'
+                        className='leading-relaxed whitespace-pre-wrap'
+                      >
+                        {wish.wishes}
+                      </Typography>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              )}
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    </Frame>
+      </Frame>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => !isLoading && setIsModalOpen(false)}
+      >
+        <div className='flex flex-col gap-6 p-2 text-center'>
+          <div className='flex flex-col gap-2'>
+            <Typography
+              fontFamily='workSans'
+              size={18}
+              weight='bold'
+              color='#212529'
+            >
+              Hapus Ucapan?
+            </Typography>
+            <Typography fontFamily='workSans' size={14} color='#6c757d'>
+              Tindakan ini tidak dapat dibatalkan. Apakah Anda yakin ingin
+              menghapus ucapan ini?
+            </Typography>
+          </div>
+
+          <div className='flex flex-col gap-2'>
+            <Button
+              onClick={handleDelete}
+              disabled={isLoading}
+              className='w-full rounded-xl bg-red-600 py-3 text-white hover:bg-red-700 disabled:bg-gray-400'
+            >
+              <Typography
+                fontFamily='workSans'
+                size={14}
+                weight='semibold'
+                color='#fff'
+              >
+                {isLoading ? 'Menghapus...' : 'Ya, Hapus'}
+              </Typography>
+            </Button>
+
+            <Button
+              onClick={() => setIsModalOpen(false)}
+              disabled={isLoading}
+              variant='outline'
+              className='w-full rounded-xl border-gray-200 py-3 hover:bg-gray-50'
+            >
+              <Typography
+                fontFamily='workSans'
+                size={14}
+                weight='medium'
+                color='#212529'
+              >
+                Batal
+              </Typography>
+            </Button>
+          </div>
+        </div>
+      </Modal>
+    </>
   )
 }
 
