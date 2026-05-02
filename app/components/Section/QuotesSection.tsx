@@ -56,11 +56,10 @@ const QuotesSection = () => {
             className='text-center leading-7 tracking-wide'
             size={14}
           >
-            Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
-            pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung
-            dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa
-            kasih dan sayang. Sungguh, pada yang demikian itu benar-benar
-            terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.
+            And among His signs is that He created for you mates from among
+            yourselves that you may find tranquility in them; and He placed
+            between you affection and mercy. Indeed in that are signs for a
+            people who reflect.
           </Typography>
         </motion.div>
 

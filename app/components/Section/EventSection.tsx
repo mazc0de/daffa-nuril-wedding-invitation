@@ -90,7 +90,7 @@ const EventSection = () => {
             weight='normal'
             className='mb-2 text-center'
           >
-            Perumahan Wisma Taman Mandiri, <br />
+            Wisma Taman Mandiri, <br />
             Blok C No.20
           </Typography>
         </motion.div>
@@ -171,7 +171,7 @@ const EventSection = () => {
             weight='normal'
             className='mb-2 text-center'
           >
-            Perumahan Wisma Taman Mandiri, <br />
+            Wisma Taman Mandiri, <br />
             Blok C No.20
           </Typography>
         </motion.div>

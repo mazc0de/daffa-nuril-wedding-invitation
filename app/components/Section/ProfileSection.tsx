@@ -74,7 +74,7 @@ const ProfileSection = () => {
               color='primary'
               className='text-center leading-tight tracking-wide'
             >
-              Nuril Syafa Aini S.Sos
+              Nuril Syafa Aini, S.Sos
             </Typography>
           </motion.div>
           <motion.div variants={itemVariants}>
@@ -132,7 +132,7 @@ const ProfileSection = () => {
               color='primary'
               className='text-center leading-tight tracking-wide'
             >
-              Daffa Hanifisyafiq S.Kom
+              Daffa Hanifisyafiq, S.Kom
             </Typography>
           </motion.div>
           <motion.div variants={itemVariants}>
