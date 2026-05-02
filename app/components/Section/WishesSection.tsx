@@ -19,6 +19,7 @@ import Frame from '../Frame'
 import Button from '../Button'
 import Typography from '../Typography'
 import TrashIcon from '../Icons/TrashIcon'
+import Toast, { ToastType } from '../Toast'
 
 interface WishData {
   name: string
@@ -42,6 +43,44 @@ const WishesSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
+  const [toast, setToast] = useState<{
+    isVisible: boolean
+    message: string
+    type: ToastType
+  }>({
+    isVisible: false,
+    message: '',
+    type: 'success'
+  })
+
+  const showToast = (message: string, type: ToastType = 'success') => {
+    setToast({ isVisible: true, message, type })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!name.trim() || !wishes.trim()) return
+
+    setIsLoading(true)
+    try {
+      const wishData: WishData = {
+        name: name.trim(),
+        wishes: wishes.trim(),
+        createdAt: serverTimestamp()
+      }
+      await addDoc(collection(db, 'wishes'), wishData)
+
+      setName('')
+      setWishes('')
+      showToast('Ucapan Anda berhasil dikirim!', 'success')
+    } catch (error) {
+      console.error(error)
+      showToast('Gagal mengirim ucapan.', 'error')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const handleDelete = async () => {
     if (!selectedId) return
     setIsLoading(true)
@@ -49,35 +88,11 @@ const WishesSection = () => {
       await deleteDoc(doc(db, 'wishes', selectedId))
       setIsModalOpen(false)
       setSelectedId(null)
+
+      showToast('Ucapan berhasil dihapus.', 'info')
     } catch (error) {
       console.error('Gagal menghapus:', error)
-      alert('Gagal menghapus ucapan.')
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (!name.trim() || !wishes.trim()) return
-
-    setIsLoading(true)
-
-    try {
-      const wishData: WishData = {
-        name: name.trim(),
-        wishes: wishes.trim(),
-        createdAt: serverTimestamp()
-      }
-
-      await addDoc(collection(db, 'wishes'), wishData)
-
-      setName('')
-      setWishes('')
-    } catch (error) {
-      console.error(error)
-      alert('Maaf, terjadi kesalahan saat mengirim ucapan.')
+      showToast('Gagal menghapus ucapan.', 'error')
     } finally {
       setIsLoading(false)
     }
@@ -333,6 +348,12 @@ const WishesSection = () => {
           </div>
         </div>
       </Modal>
+      <Toast
+        isVisible={toast.isVisible}
+        message={toast.message}
+        type={toast.type}
+        onClose={() => setToast(prev => ({ ...prev, isVisible: false }))}
+      />
     </>
   )
 }
