@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import { motion, Variants } from 'framer-motion'
 
@@ -5,6 +6,7 @@ import Frame from '../Frame'
 import Button from '../Button'
 import Typography from '../Typography'
 import { InstagramIcon } from '../Icons/InstagramIcon'
+import { DAFFA_INSTAGRAM, NURIL_INSTAGRAM } from '@/app/constants/app'
 
 const ProfileSection = () => {
   const containerVariants: Variants = {
@@ -78,19 +80,25 @@ const ProfileSection = () => {
             </Typography>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50!'>
-              <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
-                <InstagramIcon size={18} fill='#fff' />
-              </div>
-              <Typography
-                fontFamily='workSans'
-                color='#1a1a1a'
-                className='text-center font-medium tracking-wide'
-                size={12}
-              >
-                Instagram
-              </Typography>
-            </Button>
+            <Link
+              href={NURIL_INSTAGRAM}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50!'>
+                <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
+                  <InstagramIcon size={18} fill='#fff' />
+                </div>
+                <Typography
+                  fontFamily='workSans'
+                  color='#1a1a1a'
+                  className='text-center font-medium tracking-wide'
+                  size={12}
+                >
+                  Instagram
+                </Typography>
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -136,19 +144,25 @@ const ProfileSection = () => {
             </Typography>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50!'>
-              <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
-                <InstagramIcon size={18} fill='#fff' />
-              </div>
-              <Typography
-                fontFamily='workSans'
-                color='#1a1a1a'
-                className='text-center font-medium tracking-wide'
-                size={12}
-              >
-                Instagram
-              </Typography>
-            </Button>
+            <Link
+              href={DAFFA_INSTAGRAM}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-all hover:bg-neutral-50!'>
+                <div className='flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-sm'>
+                  <InstagramIcon size={18} fill='#fff' />
+                </div>
+                <Typography
+                  fontFamily='workSans'
+                  color='#1a1a1a'
+                  className='text-center font-medium tracking-wide'
+                  size={12}
+                >
+                  Instagram
+                </Typography>
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

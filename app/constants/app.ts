@@ -19,3 +19,5 @@ export const NO_REK_MANDIRI_LABEL = ` Mandiri : Daffa Hanifisyafiq`
 export const NO_REK_BCA = `1321420660`
 export const NO_REK_BCA_LABEL = ` BCA : Nuril Syafa Aini`
 export const ALAMAT_RUMAH = ` Wisma Taman Mandiri, Blok C No. 20, RT.7/RW.3, Klarasan, Taman, Kab.Pemalang, Jawa Tengah, 52361`
+export const DAFFA_INSTAGRAM = 'https://www.instagram.com/daffahnfy'
+export const NURIL_INSTAGRAM = 'https://www.instagram.com/uyiing_'
