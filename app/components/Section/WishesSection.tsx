@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {
   collection,
   addDoc,
@@ -40,6 +40,8 @@ const WishesSection = ({ dict }: WishesSectionProps) => {
   const searchParams = useSearchParams()
   const isDeleteActive = searchParams.get('delete') === 'true'
 
+  const listRef = useRef<HTMLDivElement>(null)
+
   const [name, setName] = useState<string>('')
   const [wishes, setWishes] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -78,6 +80,15 @@ const WishesSection = ({ dict }: WishesSectionProps) => {
       setName('')
       setWishes('')
       showToast('Ucapan Anda berhasil dikirim!', 'success')
+
+      setTimeout(() => {
+        if (listRef.current) {
+          listRef.current.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          })
+        }
+      }, 300)
     } catch (error) {
       console.error(error)
       showToast('Gagal mengirim ucapan.', 'error')
@@ -242,7 +253,10 @@ const WishesSection = ({ dict }: WishesSectionProps) => {
             variants={itemVariants}
             className='border-primary-800 flex min-h-0 w-full flex-1 flex-col gap-3 border-t pt-4 md:px-6'
           >
-            <div className='custom-scrollbar flex h-full w-full flex-col gap-3 overflow-y-auto pr-1 pb-2'>
+            <div
+              ref={listRef}
+              className='custom-scrollbar flex h-full w-full flex-col gap-3 overflow-y-auto pr-1 pb-2'
+            >
               {wishList.length === 0 ? (
                 <Typography
                   fontFamily='workSans'
