@@ -3,7 +3,6 @@ import localFont from 'next/font/local'
 import { Work_Sans } from 'next/font/google'
 
 import '../globals.css'
-import { Locale } from '@/lib/dictionary'
 
 const brigestaFont = localFont({
   src: '../../public/fonts/brigesta.ttf',

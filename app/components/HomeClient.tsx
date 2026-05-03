@@ -9,6 +9,7 @@ import { Dictionary } from '@/lib/dictionary'
 import SplashWrapper from './SplashWrapper'
 import HeroSection from './Section/HeroSection'
 import EventSection from './Section/EventSection'
+import LanguageSwitcher from './LanguageSwitcher'
 import WishesSection from './Section/WishesSection'
 import QuotesSection from './Section/QuotesSection'
 import GallerySection from './Section/GallerySection'
@@ -109,6 +110,7 @@ const HomeClient = ({ dict }: HomeClientProps) => {
 
   return (
     <main className='shadow-custom bg-background-image relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat'>
+      <LanguageSwitcher />
       <motion.div
         {...smoothWind(12, 8, 3, 0)}
         className='absolute -top-8 -left-8 z-10'
