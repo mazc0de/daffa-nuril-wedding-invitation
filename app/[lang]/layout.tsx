@@ -43,11 +43,13 @@ export default async function RootLayout({
   params
 }: {
   children: React.ReactNode
-  params: Promise<{ lang: Locale }>
+  params: Promise<{ lang: string }>
 }) {
+  const { lang } = await params
+
   return (
     <html
-      lang='en'
+      lang={lang}
       className={`${brigestaFont.variable} ${workSansFont.variable} ${english111viva.variable} ${photographSignature.variable} h-full antialiased`}
     >
       <body className='mx-auto flex h-screen max-w-120 flex-col'>
