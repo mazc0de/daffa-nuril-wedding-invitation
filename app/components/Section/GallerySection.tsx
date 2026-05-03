@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
-import { motion, Variants, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import Frame from '../Frame'
 import Typography from '../Typography'
 import Image from 'next/image'
+import {
+  containerVariants,
+  itemVariants,
+  scaleVariants
+} from '@/app/utils/framer'
 
 const images = [
   { src: 'https://picsum.photos/800/500?random=1', width: 800, height: 500 },
@@ -34,32 +39,6 @@ const GallerySection: React.FC = () => {
       setSelectedIndex(
         selectedIndex === images.length - 1 ? 0 : selectedIndex + 1
       )
-    }
-  }
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
-    }
-  }
-
-  const scaleVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
     }
   }
 

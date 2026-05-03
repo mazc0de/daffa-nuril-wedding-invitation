@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 import Frame from '../Frame'
 import Button from '../Button'
@@ -8,46 +8,29 @@ import Typography from '../Typography'
 
 import { GOOGLE_CALENDAR_URL } from '../../constants/app'
 import { Dictionary } from '@/lib/dictionary'
+import { itemVariants, scaleVariants } from '@/app/utils/framer'
 
 interface HeroSectionProps {
   dict: Dictionary
 }
 
 const HeroSection = ({ dict }: HeroSectionProps) => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
-    }
-  }
-
-  const scaleVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
-    }
-  }
-
   return (
     <Frame className='flex h-full flex-col gap-6 p-6'>
       <motion.div
         className='flex w-full flex-col items-center justify-center gap-6'
         initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true, amount: 0.3 }}
-        variants={containerVariants}
+        animate='visible'
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.3,
+              delayChildren: 0.6
+            }
+          }
+        }}
       >
         <motion.div variants={scaleVariants} className='w-full'>
           <Image
@@ -56,6 +39,7 @@ const HeroSection = ({ dict }: HeroSectionProps) => {
             width={400}
             height={600}
             className='border-primary-800 h-105 w-full rounded-t-full border-2 border-solid object-cover'
+            priority
           />
         </motion.div>
 
@@ -97,20 +81,22 @@ const HeroSection = ({ dict }: HeroSectionProps) => {
             rel='noopener noreferrer'
             className='self-center'
           >
-            <Button
-              variant='primary'
-              borderRadius='rounded-full'
-              className='w-fit'
-            >
-              <Typography
-                fontFamily='workSans'
-                size={14}
-                color='#fff'
-                weight='medium'
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                variant='primary'
+                borderRadius='rounded-full'
+                className='w-fit cursor-pointer'
               >
-                {dict.save_the_date}
-              </Typography>
-            </Button>
+                <Typography
+                  fontFamily='workSans'
+                  size={14}
+                  color='#fff'
+                  weight='medium'
+                >
+                  {dict.save_the_date}
+                </Typography>
+              </Button>
+            </motion.div>
           </Link>
         </motion.div>
       </motion.div>

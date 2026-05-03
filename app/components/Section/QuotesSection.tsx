@@ -3,38 +3,17 @@ import { motion, Variants } from 'framer-motion'
 
 import Typography from '../Typography'
 import { Dictionary } from '@/lib/dictionary'
+import {
+  containerVariants,
+  itemVariants,
+  scaleVariants
+} from '@/app/utils/framer'
 
 interface QuotesSectionProps {
   dict: Dictionary
 }
 
 const QuotesSection = ({ dict }: QuotesSectionProps) => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
-    }
-  }
-
-  const scaleVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
-    }
-  }
-
   return (
     <div className='bg-primary-600/80 flex h-[80vh] w-full flex-col items-center justify-center gap-6 overflow-hidden p-10'>
       <motion.div

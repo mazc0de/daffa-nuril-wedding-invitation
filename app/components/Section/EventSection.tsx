@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { motion, Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 import Frame from '../Frame'
 import Button from '../Button'
@@ -9,38 +9,17 @@ import CheersIcon from '../Icons/CheersIcon'
 import WeddingRingIcon from '../Icons/WeddingRingIcon'
 import { GOOGLE_MAP_HOUSE_LOCATION } from '@/app/constants/app'
 import { Dictionary } from '@/lib/dictionary'
+import {
+  containerVariants,
+  itemVariants,
+  scaleVariants
+} from '@/app/utils/framer'
 
 interface EventSectionProps {
   dict: Dictionary
 }
 
 const EventSection = ({ dict }: EventSectionProps) => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
-    }
-  }
-
-  const scaleVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
-    }
-  }
-
   return (
     <Frame className='flex flex-col items-center justify-center gap-8 overflow-hidden rounded-4xl! p-4'>
       <motion.div

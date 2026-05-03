@@ -20,6 +20,7 @@ import {
   NO_REK_MANDIRI_LABEL
 } from '@/app/constants/app'
 import { Dictionary } from '@/lib/dictionary'
+import { containerVariants, itemVariants } from '@/app/utils/framer'
 
 interface WeddingGiftSectionProps {
   dict: Dictionary
@@ -52,23 +53,6 @@ const WeddingGiftSection = ({ dict }: WeddingGiftSectionProps) => {
       showToast(`${label} berhasil disalin!`, 'success')
     } catch (err) {
       showToast('Gagal menyalin teks.', 'error')
-    }
-  }
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
     }
   }
 

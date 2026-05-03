@@ -3,6 +3,7 @@ import { motion, Variants } from 'framer-motion'
 import Frame from '../Frame'
 import Typography from '../Typography'
 import { Dictionary } from '@/lib/dictionary'
+import { itemVariants, scaleVariants } from '@/app/utils/framer'
 
 interface RegardsSectionProps {
   dict: Dictionary
@@ -16,24 +17,6 @@ const RegardsSection = ({ dict }: RegardsSectionProps) => {
       transition: {
         staggerChildren: 0.2
       }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' }
-    }
-  }
-
-  const scaleVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }
     }
   }
 

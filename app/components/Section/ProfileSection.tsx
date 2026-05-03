@@ -1,40 +1,19 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 import Frame from '../Frame'
 import Button from '../Button'
 import Typography from '../Typography'
 import { InstagramIcon } from '../Icons/InstagramIcon'
 import { DAFFA_INSTAGRAM, NURIL_INSTAGRAM } from '@/app/constants/app'
+import {
+  containerVariants,
+  itemVariants,
+  scaleVariants
+} from '@/app/utils/framer'
 
 const ProfileSection = () => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
-    }
-  }
-
-  const scaleVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
-    }
-  }
-
   return (
     <Frame className='flex h-fit flex-col gap-2 overflow-hidden p-4'>
       <motion.div

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, SubmitEvent } from 'react'
 import {
   collection,
   addDoc,
@@ -21,6 +21,7 @@ import Typography from '../Typography'
 import TrashIcon from '../Icons/TrashIcon'
 import Toast, { ToastType } from '../Toast'
 import { Dictionary } from '@/lib/dictionary'
+import { containerVariants, itemVariants } from '@/app/utils/framer'
 
 interface WishData {
   name: string
@@ -64,7 +65,7 @@ const WishesSection = ({ dict }: WishesSectionProps) => {
     setToast({ isVisible: true, message, type })
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!name.trim() || !wishes.trim()) return
 
@@ -111,23 +112,6 @@ const WishesSection = ({ dict }: WishesSectionProps) => {
       showToast('Gagal menghapus ucapan.', 'error')
     } finally {
       setIsLoading(false)
-    }
-  }
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
     }
   }
 
