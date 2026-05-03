@@ -1,20 +1,26 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useRef, useEffect, Suspense } from 'react'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
+import { useState, useRef, useEffect, Suspense, ComponentType } from 'react'
 
-import HeroSection from './components/Section/HeroSection'
-import QuotesSection from './components/Section/QuotesSection'
-import ProfileSection from './components/Section/ProfileSection'
-import EventSection from './components/Section/EventSection'
-import WeddingGiftSection from './components/Section/WeddingGiftSection'
-import WishesSection from './components/Section/WishesSection'
-import SplashWrapper from './components/SplashWrapper'
-import GallerySection from './components/Section/GallerySection'
-import RegardsSection from './components/Section/RegardsSection'
+import { Dictionary } from '@/lib/dictionary'
 
-const sections = [
+import SplashWrapper from './SplashWrapper'
+import HeroSection from './Section/HeroSection'
+import EventSection from './Section/EventSection'
+import WishesSection from './Section/WishesSection'
+import QuotesSection from './Section/QuotesSection'
+import GallerySection from './Section/GallerySection'
+import RegardsSection from './Section/RegardsSection'
+import ProfileSection from './Section/ProfileSection'
+import WeddingGiftSection from './Section/WeddingGiftSection'
+
+interface SectionProps {
+  dict: Dictionary
+}
+
+const sections: { id: number; Component: ComponentType<SectionProps> }[] = [
   { id: 1, Component: HeroSection },
   { id: 2, Component: QuotesSection },
   { id: 3, Component: ProfileSection },
@@ -25,9 +31,12 @@ const sections = [
   { id: 8, Component: RegardsSection }
 ]
 
-const Home = () => {
-  const [isOpened, setIsOpened] = useState(false)
+interface HomeClientProps {
+  dict: Dictionary
+}
 
+const HomeClient = ({ dict }: HomeClientProps) => {
+  const [isOpened, setIsOpened] = useState(false)
   const [activeSection, setActiveSection] = useState(0)
   const sectionRefs = useRef<(HTMLElement | null)[]>([])
 
@@ -99,7 +108,7 @@ const Home = () => {
   }
 
   return (
-    <main className='bg-1 shadow-custom relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat'>
+    <main className='shadow-custom bg-background-image relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat'>
       <motion.div
         {...smoothWind(12, 8, 3, 0)}
         className='absolute -top-8 -left-8 z-10'
@@ -175,7 +184,7 @@ const Home = () => {
           >
             <div className='h-full w-full max-w-md'>
               <Suspense fallback={null}>
-                <SplashWrapper onOpen={() => setIsOpened(true)} />
+                <SplashWrapper onOpen={() => setIsOpened(true)} dict={dict} />
               </Suspense>
             </div>
           </motion.div>
@@ -205,7 +214,6 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Kontainer */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -223,13 +231,13 @@ const Home = () => {
                   }}
                   className={`mx-auto flex items-center justify-center ${
                     index === 1
-                      ? 'w-full p-0'
+                      ? 'w-full py-4'
                       : index === 4 || index === 7
                         ? 'w-full p-6'
                         : `max-w-md p-6 ${index === 2 ? 'min-h-screen' : 'h-screen'}`
                   }`}
                 >
-                  <SectionContent />
+                  <SectionContent dict={dict} />
                 </section>
               )
             })}
@@ -240,4 +248,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomeClient

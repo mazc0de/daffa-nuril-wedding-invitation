@@ -2,8 +2,13 @@ import Image from 'next/image'
 import { motion, Variants } from 'framer-motion'
 import Frame from '../Frame'
 import Typography from '../Typography'
+import { Dictionary } from '@/lib/dictionary'
 
-const RegardsSection = () => {
+interface RegardsSectionProps {
+  dict: Dictionary
+}
+
+const RegardsSection = ({ dict }: RegardsSectionProps) => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,10 +64,9 @@ const RegardsSection = () => {
             weight='normal'
             className='px-4 text-center leading-relaxed'
           >
-            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda
-            berkenan hadir dan memberikan doa restunya untuk pernikahan kami.
+            {dict.invitation_message}
             <br />
-            Atas doa & restunya, kami ucapkan terima kasih.
+            {dict.closing_thanks}
           </Typography>
         </motion.div>
 
@@ -77,7 +81,7 @@ const RegardsSection = () => {
             weight='semibold'
             className='text-center italic'
           >
-            Hormat Kami,
+            {dict.regards}
           </Typography>
           <Typography
             fontFamily='english111viva'

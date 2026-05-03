@@ -19,8 +19,13 @@ import {
   NO_REK_MANDIRI,
   NO_REK_MANDIRI_LABEL
 } from '@/app/constants/app'
+import { Dictionary } from '@/lib/dictionary'
 
-const WeddingGiftSection = () => {
+interface WeddingGiftSectionProps {
+  dict: Dictionary
+}
+
+const WeddingGiftSection = ({ dict }: WeddingGiftSectionProps) => {
   const [isCashlessModalOpen, setIsCashlessModalOpen] = useState<boolean>(false)
   const [isGiftModalOpen, setIsGiftModalOpen] = useState<boolean>(false)
 
@@ -96,8 +101,7 @@ const WeddingGiftSection = () => {
               weight='normal'
               className='mb-2 px-8 text-center'
             >
-              Terima kasih telah menambah semangat kegembiraan pernikahan kami
-              dengan kehadiran dan hadiah indah dari Anda.
+              {dict.thank_you_message}
             </Typography>
           </motion.div>
 
@@ -119,7 +123,7 @@ const WeddingGiftSection = () => {
                   className='text-center font-medium tracking-wide'
                   size={12}
                 >
-                  Cashless
+                  {dict.cashless}
                 </Typography>
               </Button>
             </motion.div>
@@ -138,7 +142,7 @@ const WeddingGiftSection = () => {
                   className='text-center font-medium tracking-wide'
                   size={12}
                 >
-                  Send a Gift
+                  {dict.send_gift}
                 </Typography>
               </Button>
             </motion.div>

@@ -1,0 +1,13 @@
+import { getDictionary, Locale } from '@/lib/dictionary'
+import HomeClient from '../components/HomeClient'
+
+export default async function Page({
+  params
+}: {
+  params: Promise<{ lang: Locale }>
+}) {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  return <HomeClient dict={dict} />
+}

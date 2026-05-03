@@ -8,8 +8,13 @@ import MapPinIcon from '../Icons/MapPinIcon'
 import CheersIcon from '../Icons/CheersIcon'
 import WeddingRingIcon from '../Icons/WeddingRingIcon'
 import { GOOGLE_MAP_HOUSE_LOCATION } from '@/app/constants/app'
+import { Dictionary } from '@/lib/dictionary'
 
-const EventSection = () => {
+interface EventSectionProps {
+  dict: Dictionary
+}
+
+const EventSection = ({ dict }: EventSectionProps) => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -54,9 +59,9 @@ const EventSection = () => {
             fontFamily='english111viva'
             size={36}
             color='primary'
-            className='leading-tight'
+            className='text-center leading-tight'
           >
-            Akad Nikah
+            {dict.akad_nikah}
           </Typography>
         </motion.div>
 
@@ -67,7 +72,7 @@ const EventSection = () => {
             color='primary'
             className='leading-tight'
           >
-            Minggu, 31 Mei 2026
+            {dict.wedding_date}
           </Typography>
         </motion.div>
 
@@ -78,7 +83,7 @@ const EventSection = () => {
             color='#212529'
             weight='semibold'
           >
-            Pukul 07.30
+            {dict.time_0730}
           </Typography>
         </motion.div>
 
@@ -137,7 +142,7 @@ const EventSection = () => {
             color='primary'
             className='leading-tight'
           >
-            Resepsi
+            {dict.reception}
           </Typography>
         </motion.div>
 
@@ -148,7 +153,7 @@ const EventSection = () => {
             color='primary'
             className='leading-tight'
           >
-            Minggu, 31 Mei 2026
+            {dict.wedding_date}
           </Typography>
         </motion.div>
 
@@ -159,7 +164,7 @@ const EventSection = () => {
             color='#212529'
             weight='semibold'
           >
-            Pukul 12.00
+            {dict.time_1200}
           </Typography>
         </motion.div>
 

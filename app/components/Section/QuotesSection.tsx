@@ -2,8 +2,13 @@ import Image from 'next/image'
 import { motion, Variants } from 'framer-motion'
 
 import Typography from '../Typography'
+import { Dictionary } from '@/lib/dictionary'
 
-const QuotesSection = () => {
+interface QuotesSectionProps {
+  dict: Dictionary
+}
+
+const QuotesSection = ({ dict }: QuotesSectionProps) => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,10 +61,7 @@ const QuotesSection = () => {
             className='text-center leading-7 tracking-wide'
             size={14}
           >
-            And among His signs is that He created for you mates from among
-            yourselves that you may find tranquility in them; and He placed
-            between you affection and mercy. Indeed in that are signs for a
-            people who reflect.
+            {dict.arrum_21}
           </Typography>
         </motion.div>
 
@@ -71,7 +73,7 @@ const QuotesSection = () => {
             weight='semibold'
             className='tracking-wider'
           >
-            Surah Ar-Rum : 21
+            {dict.arrum_21_title}
           </Typography>
         </motion.div>
       </motion.div>

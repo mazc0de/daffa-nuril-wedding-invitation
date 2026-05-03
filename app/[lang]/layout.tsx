@@ -2,16 +2,17 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { Work_Sans } from 'next/font/google'
 
-import './globals.css'
+import '../globals.css'
+import { Locale } from '@/lib/dictionary'
 
 const brigestaFont = localFont({
-  src: '../public/fonts/brigesta.ttf',
+  src: '../../public/fonts/brigesta.ttf',
   variable: '--font-local-brigesta',
   display: 'swap'
 })
 
 const english111viva = localFont({
-  src: '../public/fonts/english111viva.ttf',
+  src: '../../public/fonts/english111viva.ttf',
   variable: '--font-local-english111viva',
   display: 'swap'
 })
@@ -23,7 +24,7 @@ const workSansFont = Work_Sans({
 })
 
 const photographSignature = localFont({
-  src: '../public/fonts/photograph_signature.ttf',
+  src: '../../public/fonts/photograph_signature.ttf',
   variable: '--font-local-photograph_signature',
   display: 'swap'
 })
@@ -33,11 +34,17 @@ export const metadata: Metadata = {
   description: 'Minggu, 31 Mei 2026'
 }
 
-export default function RootLayout({
-  children
-}: Readonly<{
+export async function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'id' }]
+}
+
+export default async function RootLayout({
+  children,
+  params
+}: {
   children: React.ReactNode
-}>) {
+  params: Promise<{ lang: Locale }>
+}) {
   return (
     <html
       lang='en'

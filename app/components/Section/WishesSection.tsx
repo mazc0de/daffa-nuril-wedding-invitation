@@ -20,6 +20,7 @@ import Button from '../Button'
 import Typography from '../Typography'
 import TrashIcon from '../Icons/TrashIcon'
 import Toast, { ToastType } from '../Toast'
+import { Dictionary } from '@/lib/dictionary'
 
 interface WishData {
   name: string
@@ -31,7 +32,11 @@ interface FetchedWish extends WishData {
   id: string
 }
 
-const WishesSection = () => {
+interface WishesSectionProps {
+  dict: Dictionary
+}
+
+const WishesSection = ({ dict }: WishesSectionProps) => {
   const searchParams = useSearchParams()
   const isDeleteActive = searchParams.get('delete') === 'true'
 
@@ -164,7 +169,7 @@ const WishesSection = () => {
                 weight='normal'
                 className='px-8 text-center'
               >
-                Berikan ucapan harapan dan do'a kepada kedua mempelai
+                {dict.give_wishes}
               </Typography>
             </motion.div>
           </div>
@@ -181,11 +186,11 @@ const WishesSection = () => {
                 color='#212529'
                 weight='semibold'
               >
-                Nama
+                {dict.name_label}
               </Typography>
               <input
                 type='text'
-                placeholder='Masukkan nama Anda'
+                placeholder={dict.name_placeholder}
                 value={name}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setName(e.target.value)
@@ -203,11 +208,11 @@ const WishesSection = () => {
                 color='#212529'
                 weight='semibold'
               >
-                Ucapan
+                {dict.message_label}
               </Typography>
               <textarea
                 rows={2}
-                placeholder='Tulis ucapan dan doa...'
+                placeholder={dict.message_placeholder}
                 value={wishes}
                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                   setWishes(e.target.value)
@@ -228,7 +233,7 @@ const WishesSection = () => {
                     : 'bg-gray-800 hover:bg-gray-900'
                 }`}
               >
-                {isLoading ? 'Mengirim...' : 'Kirim Ucapan'}
+                {isLoading ? dict.sending : dict.submit_message}
               </Button>
             </motion.div>
           </motion.form>
@@ -245,7 +250,7 @@ const WishesSection = () => {
                   color='#6c757d'
                   className='text-center italic'
                 >
-                  Belum ada ucapan.
+                  {dict.empty_message}
                 </Typography>
               ) : (
                 <AnimatePresence mode='popLayout'>

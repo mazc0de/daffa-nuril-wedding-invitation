@@ -7,8 +7,13 @@ import Button from '../Button'
 import Typography from '../Typography'
 
 import { GOOGLE_CALENDAR_URL } from '../../constants/app'
+import { Dictionary } from '@/lib/dictionary'
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  dict: Dictionary
+}
+
+const HeroSection = ({ dict }: HeroSectionProps) => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,8 +63,13 @@ const HeroSection = () => {
           variants={itemVariants}
           className='flex flex-col items-center justify-center gap-2'
         >
-          <Typography fontFamily='workSans' size={14} color='#212529'>
-            THE WEDDING OF
+          <Typography
+            fontFamily='workSans'
+            size={14}
+            color='#212529'
+            className='uppercase'
+          >
+            {dict.wedding_of}
           </Typography>
           <Typography
             fontFamily='brigesta'
@@ -76,7 +86,7 @@ const HeroSection = () => {
             weight='semibold'
             className='tracking-wider'
           >
-            Minggu, 31 Mei 2026
+            {dict.wedding_date}
           </Typography>
         </motion.div>
 
@@ -98,7 +108,7 @@ const HeroSection = () => {
                 color='#fff'
                 weight='medium'
               >
-                Save the Date
+                {dict.save_the_date}
               </Typography>
             </Button>
           </Link>

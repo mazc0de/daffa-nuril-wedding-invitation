@@ -3,12 +3,14 @@ import { useSearchParams } from 'next/navigation'
 import Frame from './Frame'
 import Button from './Button'
 import Typography from './Typography'
+import { Dictionary } from '@/lib/dictionary'
 
 interface SplashScreenProps {
   onOpen: () => void
+  dict: Dictionary
 }
 
-const SplashScreen = ({ onOpen }: SplashScreenProps) => {
+const SplashScreen = ({ onOpen, dict }: SplashScreenProps) => {
   const searchParams = useSearchParams()
   const guestName = searchParams.get('to') || 'Nama Tamu'
 
@@ -16,7 +18,7 @@ const SplashScreen = ({ onOpen }: SplashScreenProps) => {
     <div className='relative z-10 flex h-full w-full items-center justify-center p-6'>
       <Frame className='flex h-full w-full flex-col items-center justify-center gap-5 p-8 text-center'>
         <Typography fontFamily='workSans' size={14} color='#212529'>
-          The Wedding Of
+          {dict.wedding_of}
         </Typography>
         <div>
           <Typography
@@ -50,8 +52,8 @@ const SplashScreen = ({ onOpen }: SplashScreenProps) => {
           color='#212529'
           weight='medium'
         >
-          Kepada Yth; <br />
-          Bapak/Ibu/Saudara/i
+          {dict.to} <br />
+          {dict.recipient}
         </Typography>
         <Typography
           fontFamily='workSans'
@@ -71,7 +73,7 @@ const SplashScreen = ({ onOpen }: SplashScreenProps) => {
               color='#fff'
               weight='medium'
             >
-              Open Invitation
+              {dict.open_invitation}
             </Typography>
           </Button>
         </div>
