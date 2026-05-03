@@ -6,6 +6,7 @@ import { useState, useRef, useEffect, Suspense, ComponentType } from 'react'
 
 import { Dictionary } from '@/lib/dictionary'
 
+import MusicButton from './MusicButton'
 import SplashWrapper from './SplashWrapper'
 import HeroSection from './Section/HeroSection'
 import EventSection from './Section/EventSection'
@@ -37,9 +38,32 @@ interface HomeClientProps {
 }
 
 const HomeClient = ({ dict }: HomeClientProps) => {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
   const [isOpened, setIsOpened] = useState(false)
   const [activeSection, setActiveSection] = useState(0)
   const sectionRefs = useRef<(HTMLElement | null)[]>([])
+
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause()
+      } else {
+        audioRef.current.play()
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  useEffect(() => {
+    if (isOpened && audioRef.current) {
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(error => console.log('Autoplay dicegah browser:', error))
+    }
+  }, [isOpened])
 
   useEffect(() => {
     if (!isOpened) return
@@ -61,6 +85,30 @@ const HomeClient = ({ dict }: HomeClientProps) => {
     sectionRefs.current.forEach(el => el && observer.observe(el))
     return () => observer.disconnect()
   }, [isOpened])
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!audioRef.current) return
+
+      if (document.hidden) {
+        audioRef.current.pause()
+      } else {
+        if (isPlaying) {
+          audioRef.current
+            .play()
+            .catch(err =>
+              console.log('Autoplay dicegah saat kembali ke tab:', err)
+            )
+        }
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [isPlaying])
 
   const scrollToSection = (index: number) => {
     sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth' })
@@ -110,7 +158,15 @@ const HomeClient = ({ dict }: HomeClientProps) => {
 
   return (
     <main className='shadow-custom bg-background-image relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat'>
-      <LanguageSwitcher />
+      <audio ref={audioRef} src='/audio/bgm.mp3' loop preload='none' />
+      <Suspense fallback={null}>
+        <LanguageSwitcher isOpened={isOpened} />
+      </Suspense>
+      <MusicButton
+        isOpened={isOpened}
+        isPlaying={isPlaying}
+        toggleAudio={toggleAudio}
+      />
       <motion.div
         {...smoothWind(12, 8, 3, 0)}
         className='absolute -top-8 -left-8 z-10'
