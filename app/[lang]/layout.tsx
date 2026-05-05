@@ -39,13 +39,35 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16' },
-      { url: '/favicon-32x32.png', sizes: '32x32' }
+      {
+        url: '/favicon-16x16.png',
+        sizes: '16x16',
+        type: 'image/png'
+      },
+      {
+        url: '/favicon-32x32.png',
+        sizes: '32x32',
+        type: 'image/png'
+      }
     ],
-    apple: '/apple-touch-icon.png'
+    apple: [
+      {
+        url: '/apple-touch-icon.png',
+        sizes: '180x180',
+        type: 'image/png'
+      }
+    ]
   },
 
   manifest: '/site.webmanifest',
+
+  alternates: {
+    canonical: 'https://www.nurillovesdaffa.my.id/en',
+    languages: {
+      en: 'https://www.nurillovesdaffa.my.id/en',
+      id: 'https://www.nurillovesdaffa.my.id/id'
+    }
+  },
 
   openGraph: {
     title: 'The Wedding of Nuril & Daffa',
@@ -54,10 +76,11 @@ export const metadata: Metadata = {
     siteName: 'Nuril & Daffa Wedding',
     images: [
       {
-        url: '/og-image.jpg',
+        url: 'https://www.nurillovesdaffa.my.id/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Wedding Nuril & Daffa'
+        alt: 'Wedding Nuril & Daffa',
+        type: 'image/jpeg'
       }
     ],
     locale: 'en_US',
@@ -69,15 +92,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'The Wedding of Nuril & Daffa',
     description,
-    images: ['/og-image.jpg']
+    images: ['https://www.nurillovesdaffa.my.id/og-image.jpg']
   },
 
-  alternates: {
-    canonical: 'https://www.nurillovesdaffa.my.id/en',
-    languages: {
-      en: '/en',
-      id: '/id'
-    }
+  robots: {
+    index: true,
+    follow: true
   }
 }
 
