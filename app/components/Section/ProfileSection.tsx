@@ -22,7 +22,7 @@ const ProfileSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={scaleVariants}
       >
-        <div className='border-primary-800 relative h-80 w-full overflow-hidden rounded-t-full border-2 border-solid'>
+        <div className='border-primary-800 relative h-80 w-full overflow-hidden rounded-t-full border-2 border-solid min-[430px]:h-95 min-[480px]:h-96'>
           <Image
             src='/images/brides-grain.webp'
             alt='the-brides-photo'
@@ -154,13 +154,13 @@ const ProfileSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={scaleVariants}
       >
-        <div className='border-primary-800 relative h-80 w-full overflow-hidden rounded-b-full border-2 border-solid'>
+        <div className='border-primary-800 relative h-80 w-full overflow-hidden rounded-b-full border-2 border-solid min-[430px]:h-95 min-[480px]:h-96'>
           <Image
             src='/images/grooms-grain.webp'
             alt='the-grooms-photo'
             fill
             sizes='(max-width: 768px) 100vw, 800px'
-            className='object-cover object-[50%_100%]'
+            className='object-cover object-[50%_100%] min-[480px]:object-[50%_100%]'
           />
         </div>
       </motion.div>
