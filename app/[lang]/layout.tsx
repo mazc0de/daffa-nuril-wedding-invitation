@@ -28,9 +28,57 @@ const photographSignature = localFont({
   display: 'swap'
 })
 
+const description =
+  'You are warmly invited to the wedding of Nuril & Daffa — Sunday, May 31, 2026'
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.nurillovesdaffa.my.id'),
+
   title: 'The Wedding of Nuril & Daffa',
-  description: 'Minggu, 31 Mei 2026'
+  description,
+
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16' },
+      { url: '/favicon-32x32.png', sizes: '32x32' }
+    ],
+    apple: '/apple-touch-icon.png'
+  },
+
+  manifest: '/site.webmanifest',
+
+  openGraph: {
+    title: 'The Wedding of Nuril & Daffa',
+    description,
+    url: 'https://www.nurillovesdaffa.my.id/en',
+    siteName: 'Nuril & Daffa Wedding',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Wedding Nuril & Daffa'
+      }
+    ],
+    locale: 'en_US',
+    alternateLocale: ['id_ID'],
+    type: 'website'
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Wedding of Nuril & Daffa',
+    description,
+    images: ['/og-image.jpg']
+  },
+
+  alternates: {
+    canonical: 'https://www.nurillovesdaffa.my.id/en',
+    languages: {
+      en: '/en',
+      id: '/id'
+    }
+  }
 }
 
 export async function generateStaticParams() {
