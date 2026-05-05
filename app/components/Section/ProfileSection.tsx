@@ -22,13 +22,15 @@ const ProfileSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={scaleVariants}
       >
-        <Image
-          src='https://i.pinimg.com/736x/99/59/bd/9959bda81a2143d6fb026133d6a7f181.jpg'
-          alt='the-brides-photo'
-          width={800}
-          height={1200}
-          className='border-primary-800 h-72 w-full rounded-t-full border-2 border-solid object-cover min-[480px]:h-80 md:h-96'
-        />
+        <div className='border-primary-800 relative h-80 w-full overflow-hidden rounded-t-full border-2 border-solid'>
+          <Image
+            src='/images/brides-grain.webp'
+            alt='the-brides-photo'
+            fill
+            sizes='(max-width: 768px) 100vw, 800px'
+            className='object-cover object-center'
+          />
+        </div>
       </motion.div>
 
       <div className='flex flex-col items-center justify-center'>
@@ -152,13 +154,15 @@ const ProfileSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={scaleVariants}
       >
-        <Image
-          src='https://i.pinimg.com/1200x/46/b3/ca/46b3caaaccc6bd632f236f59d6483b91.jpg'
-          alt='the-grooms-photo'
-          width={800}
-          height={1200}
-          className='border-primary-800 h-72 w-full rounded-b-full border-2 border-solid object-cover min-[480px]:h-80 md:h-96'
-        />
+        <div className='border-primary-800 relative h-80 w-full overflow-hidden rounded-b-full border-2 border-solid'>
+          <Image
+            src='/images/grooms-grain.webp'
+            alt='the-grooms-photo'
+            fill
+            sizes='(max-width: 768px) 100vw, 800px'
+            className='object-cover object-[50%_100%]'
+          />
+        </div>
       </motion.div>
     </Frame>
   )
