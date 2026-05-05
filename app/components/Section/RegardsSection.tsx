@@ -30,13 +30,15 @@ const RegardsSection = ({ dict }: RegardsSectionProps) => {
         variants={containerVariants}
       >
         <motion.div variants={scaleVariants} className='w-full'>
-          <Image
-            src='https://i.pinimg.com/1200x/41/a4/67/41a467f9dc5e5ddcc8bc91425bb3e184.jpg'
-            alt='regards-image'
-            width={400}
-            height={600}
-            className='border-primary-800 h-105 w-full rounded-t-full border-2 border-solid object-cover'
-          />
+          <div className='border-primary-800 group relative h-80 w-full overflow-hidden rounded-t-full border-2 border-solid min-[430px]:h-95 min-[480px]:h-105'>
+            <Image
+              src='/images/couples-3.webp'
+              alt='regards-image'
+              fill
+              sizes='(max-width: 768px) 100vw, 400px'
+              className='object-cover object-[50%_50%] transition-transform duration-500 ease-out group-hover:scale-110 min-[480px]:object-[50%_50%]'
+            />
+          </div>
         </motion.div>
 
         <motion.div variants={itemVariants}>

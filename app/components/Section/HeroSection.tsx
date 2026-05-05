@@ -33,14 +33,16 @@ const HeroSection = ({ dict }: HeroSectionProps) => {
         }}
       >
         <motion.div variants={scaleVariants} className='w-full'>
-          <Image
-            src='https://i.pinimg.com/1200x/41/a4/67/41a467f9dc5e5ddcc8bc91425bb3e184.jpg'
-            alt='hero-image'
-            width={400}
-            height={600}
-            className='border-primary-800 h-105 w-full rounded-t-full border-2 border-solid object-cover'
-            priority
-          />
+          <div className='border-primary-800 group relative h-105 w-full overflow-hidden rounded-t-full border-2 border-solid'>
+            <Image
+              src='/images/couple.webp'
+              alt='hero-image'
+              fill
+              priority
+              sizes='(max-width: 768px) 100vw, 400px'
+              className='object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110'
+            />
+          </div>
         </motion.div>
 
         <motion.div
