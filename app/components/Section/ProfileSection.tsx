@@ -24,7 +24,7 @@ const ProfileSection = () => {
       >
         <div className='border-primary-800 group relative h-80 w-full overflow-hidden rounded-t-full border-2 border-solid min-[430px]:h-95 min-[480px]:h-96'>
           <Image
-            src='/images/brides-grain-2.webp'
+            src='/images/brides-grain.webp'
             alt='the-brides-photo'
             fill
             sizes='(max-width: 768px) 100vw, 800px'
