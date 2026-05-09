@@ -29,7 +29,7 @@ const sections: { id: number; Component: ComponentType<SectionProps> }[] = [
   { id: 4, Component: EventSection },
   { id: 5, Component: WeddingGiftSection },
   { id: 6, Component: WishesSection },
-  { id: 7, Component: GallerySection },
+  // { id: 7, Component: GallerySection },
   { id: 8, Component: RegardsSection }
 ]
 

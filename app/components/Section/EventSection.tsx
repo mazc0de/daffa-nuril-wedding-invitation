@@ -65,42 +65,6 @@ const EventSection = ({ dict }: EventSectionProps) => {
             {dict.time_0730}
           </Typography>
         </motion.div>
-
-        <motion.div variants={itemVariants}>
-          <Typography
-            fontFamily='workSans'
-            size={14}
-            color='#212529'
-            weight='normal'
-            className='mb-2 text-center'
-          >
-            Wisma Taman Mandiri, <br />
-            Blok C No.20
-          </Typography>
-        </motion.div>
-
-        <motion.div variants={itemVariants}>
-          <Link
-            href={GOOGLE_MAP_HOUSE_LOCATION}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='self-center'
-          >
-            <Button className='group flex w-fit items-center gap-3 rounded-full! border-neutral-200! bg-white py-1! pr-4! pl-1! transition-colors hover:bg-neutral-50!'>
-              <div className='bg-primary-800 flex aspect-square h-6 w-6 shrink-0 items-center justify-center rounded-full shadow-sm'>
-                <MapPinIcon size={12} fill='#fff' />
-              </div>
-              <Typography
-                fontFamily='workSans'
-                color='#1a1a1a'
-                className='text-center font-medium tracking-wide'
-                size={12}
-              >
-                Google Maps
-              </Typography>
-            </Button>
-          </Link>
-        </motion.div>
       </motion.div>
 
       <motion.div
